@@ -1,0 +1,5 @@
+interface:
+  display_name: "forge"
+  short_description: "Issue-to-merge workflow with subagents"
+policy:
+  allow_implicit_invocation: false
