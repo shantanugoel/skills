@@ -158,7 +158,7 @@ Add the label `needs-owner`. Then continue with other issues that do not need th
 ## New issues
 
 An agent can file an issue for what it finds during the work. File few issues. Make each issue worth the time of a
-reader. Use the bug form or the issue form in `<forge>/roles/planner.md`. A subagent sends the new issue back to the
+reader. Use the bug form or the change form in `<forge>/templates/issue.md`. A subagent sends the new issue back to the
 orchestrator, and the orchestrator creates it.
 
 | What you found | Where it goes |

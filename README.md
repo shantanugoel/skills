@@ -65,5 +65,5 @@ skills/forge/
 ├── commands/      one file for each command
 ├── reference/     the workflow, the rules, the roster, the trackers
 ├── roles/         planner, designer, test author, implementer, reviewer, tester
-└── templates/     the settings file that forge init starts from
+└── templates/     the settings file that forge init starts from, and the issue forms
 ```
