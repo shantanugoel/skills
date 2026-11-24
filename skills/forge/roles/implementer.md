@@ -51,6 +51,17 @@ Stop and report. Do not find a way around the problem.
 Fix each `must-fix` finding. If you think that a finding is wrong, answer on the pull request with the reason, and do
 not change the code. Do not add other changes in the same round.
 
+## For a spike
+
+The issue has the label `spike`. Skip the steps above.
+
+1. Do the smallest experiment that answers the question, in your own worktree, inside the time box. Do not make the
+   code ready for production.
+2. If the experiment has code, commit it on the branch. Push the branch if the repository has a remote. Release the
+   branch: `git switch --detach`.
+3. Do not open a pull request.
+4. Send back the branch name and the answer in the form of "Spike answer" in `<forge>/templates/issue.md`.
+
 ## Send back
 
 The pull request (its number, or for the local tracker the branch and the pull request text), the result of the

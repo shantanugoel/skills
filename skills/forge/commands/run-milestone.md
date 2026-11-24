@@ -19,7 +19,7 @@ run `forge plan <milestone>`, and stop.
 1. List the open slices of the milestone. Select the first slice, in the order of the plan, whose "Needs" are all
    closed and that does not have `needs-owner`.
 2. Do `forge run` for it.
-3. After the merge, read the open slices again. If the merged work changed what one of them needs, edit that slice
+3. After the merge, or after the close of a spike, read the open slices again. If the merged work changed what one of them needs, edit that slice
    and comment the reason on the milestone issue. If the change adds scope to the milestone, it is a stop condition.
 4. Do these steps again. When a slice stops for the owner, continue with slices that do not need it. When no slice
    can continue, tell the owner what waits, and stop.
@@ -45,4 +45,4 @@ run `forge plan <milestone>`, and stop.
 
 4. **Stop for the owner.** Add the label `needs-owner` to the milestone. Show the owner the report and the
    screenshots. The owner does the `(owner)` checks and accepts the milestone.
-   After that, apply the changes to later milestones that the owner agreed to, and close the milestone.
+   After that, close the milestone. Tell the owner to apply the "Learned" part with `forge roadmap`.

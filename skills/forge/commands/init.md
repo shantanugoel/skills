@@ -6,6 +6,10 @@ Do not change code.
 Read first: `<forge>/reference/workflow.md` ("Settings", "Tracker" and "Process"), `<forge>/reference/roster.md`, and
 `<forge>/templates/forge.md`.
 
+`forge kickoff` can start this command for a new project. Then use the kickoff documents (`docs/vision.md` and
+`docs/architecture.md`) for the proposals: the process, the docs, the invariants, the users and devices, and the
+models. A new project has no check yet. Write `none yet` and propose an issue that adds it.
+
 ## 1. Explore
 
 Read what exists. Do not guess.
@@ -66,17 +70,20 @@ it.
 
 4. Read `<forge>/reference/tracker-<tracker>.md` for the selected tracker.
 5. Tracker `github`: ask the owner first. Then create the labels that do not exist: `needs-owner`, `bug`,
-   `enhancement`, and for the full process `milestone`.
+   `enhancement`, `spike`, and for the full process `milestone`.
 6. Tracker `local`: create the directory `.agents/issues/`.
 7. Full process: ask the owner if you can create the Roadmap issue and the Backlog issue. Create them as the tracker
    file tells. Write their references into the settings.
 
 ## 5. Done
 
+If `init` started from `forge kickoff`, skip this section and return to step 9 of kickoff.
+
 Tell the owner:
 
 - What you wrote and created, and what you propose but did not do (for example, a check script).
 - To commit the setup files (`.agents/forge.md`, `.gitignore`, the project instructions) on the default branch before
   the first `forge run`. Worktrees start from the last commit, so they do not have files that are not committed.
-- The next command: `forge file` or `forge run` for the light process, or `forge plan` for the full process.
+- The next command: `forge file` or `forge run` for the light process, or `forge roadmap` and `forge plan` for the full
+  process.
 - That they can edit `.agents/forge.md` directly.

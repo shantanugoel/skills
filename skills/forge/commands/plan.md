@@ -40,5 +40,6 @@ Brief each subagent in the form of "Brief for a subagent" in `workflow.md`.
 1. Apply the changes that the owner asked for.
 2. Create one issue for each slice, in the order of the plan, with the milestone as its parent. The body has the
    goal, the draft checks, the flags and the needs, in the form of the planner role. In each "Needs" line, replace
-   the slice numbers of the plan with the references of the issues that you created.
+   the slice numbers of the plan with the references of the issues that you created. A spike slice uses the spike
+   form of `<forge>/templates/issue.md` and the label `spike`.
 3. Remove `needs-owner`. Tell the owner that `forge run-milestone <milestone>` can start.

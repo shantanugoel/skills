@@ -27,6 +27,25 @@ There is no pull request. The orchestrator gives you the draft plan and the desi
 Answer each question in one comment on the milestone issue. Use the "Must fix" and "Consider" form below. Skip the
 steps above.
 
+## For a kickoff or a roadmap
+
+Skip the steps above. There is no pull request and no issue. The orchestrator gives you the vision, the
+architecture, and the roadmap or the first work. Send the comment back. Do not write it to the tracker. Do a
+pre-mortem: imagine that the project failed one year from now. Answer these questions, each in a few
+lines, in the "Must fix" and "Consider" form below:
+
+- What is the most probable reason for the failure?
+- Which goal does not agree with a non-goal, a constraint or the appetite?
+- Which unknown has no spike, or comes too late?
+- What does the first milestone or the first issue build that the vision does not need?
+- Which statement in the documents did the research not check?
+
+## For a spike
+
+Skip the steps above. Read the spike issue and the answer. If there is a branch, read its diff. Answer these
+questions: does the evidence support the answer? Was the experiment fair to each option? What does the answer not
+cover? Write one comment on the spike issue in the form below.
+
 ## The comment
 
 ```

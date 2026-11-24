@@ -38,6 +38,29 @@ For an issue that adds or changes a screen, add:
   screen first.
 - Put one main action on a screen. A question to the user must be one clear choice.
 
+## For the architecture (`forge kickoff`, `forge roadmap`)
+
+Skip the steps above. There is no issue. The brief gives you the vision, the research and the answers of the owner.
+Read the code if it exists, and design from it.
+
+1. **Options.** Propose two or three shapes for the system. Use this table:
+
+   ```
+   | Option | Shape, in two lines | Good for | Bad for | Unknowns |
+   |---|---|---|---|---|
+   ```
+
+   Make the options different in a way that matters: a local app or a server, one process or many, a library or a
+   service. Do not show the same option three times with a different framework. Recommend one, with the reason.
+2. **Document.** After the owner selects an option, write `docs/architecture.md` in the form of
+   `<forge>/templates/architecture.md`. Mark each part that does not exist "planned". Do not write the file. Send
+   back the text.
+
+- Design for the goals of the vision, not for the non-goals.
+- Name each unknown that blocks a choice, as one question. The planner makes the spikes.
+- For a change of the roadmap, change only the parts of `docs/architecture.md` that the change touches.
+- Send back the options table, or the text of `docs/architecture.md` and the list of unknowns.
+
 ## Send back
 
 A link to the comment, and the reasons that the implementer must put in the design documents.

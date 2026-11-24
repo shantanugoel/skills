@@ -21,6 +21,12 @@ milestone, or a bug or a small change outside a milestone.
 
 If one of these is not true, tell the owner and stop.
 
+## Spikes
+
+If the issue has the label `spike`, do the stages of "Spikes" in `workflow.md`, not the steps below. Brief the
+planner, the implementer and the reviewer in the form of "Brief for a subagent" in `workflow.md`. Tell each one that
+the issue is a spike.
+
 ## Steps
 
 Brief each subagent in the form of "Brief for a subagent" in `workflow.md`.

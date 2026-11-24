@@ -48,7 +48,8 @@ projects:
 
 ## Git
 
-- Do not commit to the default branch, except for the merge.
+- Do not commit to the default branch, except for the merge and for the documents that the owner approved in
+  `forge kickoff` or `forge roadmap` (refer to "Documents that the owner approved" in `workflow.md`).
 - Sign off each commit (`git commit -s`).
 - Do not bypass a hook (`--no-verify`). There is one exception: the test author of a `test-first` issue pushes its
   failing tests with `--no-verify`, and comments this on the issue.

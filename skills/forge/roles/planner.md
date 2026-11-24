@@ -83,6 +83,56 @@ The steps, and what you see. One real example.
 
 The first acceptance check is that the steps now give the correct result. Ask for a test that fails without the fix.
 
+## For the vision (`forge kickoff`, `forge roadmap`)
+
+The brief gives you the idea, the research, and the answers of the owner. Write the text of `docs/vision.md` in the
+form of `<forge>/templates/vision.md`. Do not write the file. Send back the text. For a change, send back only the
+parts that change.
+
+- Use the words of the owner. Do not add a goal that the owner did not give.
+- Write each goal as something that a person can do. "A parent sees the school calendar on the phone", not "calendar
+  integration".
+- Make the non-goals specific. Agents read them before they add scope.
+- Put each question that is not answered under "Open questions". Do not guess an answer. This table is the only list
+  of open questions in the project.
+
+## For the roadmap (`forge kickoff`, `forge roadmap`)
+
+Read the vision, the architecture, the Roadmap issue if it exists, the open milestones, the open spikes, and the last
+milestone report. Do not write to the tracker or to a file. Send back the text.
+
+Propose the work:
+
+- The new spikes, each in the spike form of `<forge>/templates/issue.md`. Use the unknowns that the designer named.
+- After a kickoff: one issue that sets up the project. It builds the thinnest path from one end to the other, and the
+  check.
+- Light process: the issues to create or close, in the change form. Stop here.
+- Full process: the Roadmap issue body in this form.
+
+```
+## Direction
+One or two sentences from the vision. A link to `docs/vision.md`. The open questions are in the vision.
+
+## Milestones
+| # | Milestone | Goal: what a person can do after it | Demo, in one line | Waits on | State |
+|---|---|---|---|---|---|
+
+## Changes
+- <date>: what changed, and why. One line each. Add a line. Do not change an earlier line.
+```
+
+- Put the largest unknown first. If a milestone depends on an open question, put the spike before it.
+- Give each milestone a demo that a person can see. "Sync works" is not a demo. "Edit a note on the laptop, and see it
+  on the phone in two seconds" is a demo.
+- Keep the milestones few: the next one and approximately two after it. A later idea goes under Backlog.
+- A milestone has a goal and a demo only. Its slices wait for `forge plan`.
+- The state is one of: `candidate` (not firm, waits for a spike or the owner), `next`, `in progress`, `done`.
+
+## For a spike
+
+The issue has the label `spike`. Keep the spike form of `<forge>/templates/issue.md`. Do not add a goal or acceptance
+checks. Make the question, the options and the evidence specific. Set a time box.
+
 ## Send back
 
 The updated issue, the flags that you set with one line of reason for each, and each item that you are not sure of.

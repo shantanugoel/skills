@@ -43,7 +43,7 @@ actions, do it as the tracker file tells.
 | --- | --- | --- |
 | For | A small project, a tool, a library, a project with one person | A product that grows in steps, with a demo at each step |
 | Tracking | Issues only. A Backlog issue is optional. | Roadmap, milestones, slices and Backlog |
-| Commands | `file`, `run` | All commands |
+| Commands | `kickoff`, `roadmap`, `file`, `run` | All commands |
 | Owner decides | Stop conditions and `(owner)` checks | The milestone plan, the milestone demo, stop conditions and `(owner)` checks |
 | Report | The closing comment on each issue | The report on the milestone |
 
@@ -68,16 +68,22 @@ flowchart LR
 Full process:
 
 ```
-Roadmap issue
+Roadmap issue                the direction, the milestones and the open questions
 ├── Milestone issue          label: milestone
 │   └── Slice issue          one pull request each
 └── Backlog issue
-    └── Bug or later need    not part of a milestone yet
+    ├── Bug or later need    not part of a milestone yet
+    └── Spike issue          label: spike. One question that blocks a decision.
 ```
 
-- Only the next milestone has slices. A later milestone is a goal and a demo, nothing more.
+A spike can also be the first slice of a milestone, when the milestone plan has an unknown.
 
-Light process: each issue stands alone. If the project has a Backlog issue, new issues go under it.
+- Only the next milestone has slices. A later milestone is a goal and a demo, nothing more.
+- Only `forge kickoff` and `forge roadmap` change the Roadmap body. If the state of a milestone in it does not agree
+  with the milestone issue, the milestone issue is correct.
+
+Light process: each issue stands alone. If the project has a Backlog issue, new issues go under it. There is no
+Roadmap issue. The direction is in the vision document.
 
 Both processes:
 
@@ -111,6 +117,27 @@ slice 7 that you write before slice 1 exists will be wrong when you use it.
 
 Review and verify can send the issue back to the implementer. Do a maximum of two rounds, review and verify counted
 together. A third failure is a stop condition. It usually shows that the spec or the design is wrong, not the code.
+
+### Spikes
+
+A spike is an issue with the label `spike`. It answers one question that blocks a decision, for example "can SQLite
+sync between two devices with less than one second of delay?". Its output is an answer on the issue, not merged code.
+A spike uses these stages, and skips the others:
+
+| Stage | Role | For a spike |
+| --- | --- | --- |
+| Spec | Planner (role `planner`, "For a spike") or orchestrator | The question, the options, the evidence that answers it, and the time box |
+| Build | Implementer in its own worktree. A researcher with no worktree if the spike needs no code. | The smallest experiment. The answer in the form of "Spike answer" in `<forge>/templates/issue.md`. No pull request. |
+| Review | Reviewer (role `reviewer`, "For a spike") | Does the evidence support the answer? Is the experiment fair to each option? |
+| Close | Orchestrator | Comment the answer on the issue. Delete the branch, if there is one. Close the issue. |
+
+- Brief a researcher as a utility task (refer to "Utility tasks"), with the spike issue and the "Spike answer" form.
+- If the verdict is `changes-needed`, send the findings back to the implementer or the researcher. Do a maximum of
+  two rounds, as for an issue.
+- If the time box ends before there is an answer, the implementer sends back what it found and what is still
+  unknown. That is a result, not a failure.
+- After the close, apply the answer. A spike in a milestone: `forge run-milestone` updates the later slices. Other
+  spikes: tell the owner to run `forge roadmap`.
 
 ### Flags
 
@@ -231,6 +258,17 @@ Use the first method that your tool has.
 3. **No subagents.** Do each stage yourself, in order. Before each stage, read only what the role file tells you to
    read. Write on the issue that the review was not independent. In the full process, ask the owner before the first
    build.
+
+## Documents that the owner approved
+
+`forge kickoff` and `forge roadmap` change documents that no issue owns, for example `docs/vision.md`. The owner
+approves the text first. Then:
+
+1. Write the files in the main checkout, on the default branch.
+2. Commit only these files, and the issue files that the command changed (local tracker). Use `git commit -s`. Name
+   the command in the message.
+3. If there is a remote, push. If the remote refuses the push, push a branch and open a pull request with no
+   "Closes" line. Tell the owner.
 
 ## Utility tasks
 
