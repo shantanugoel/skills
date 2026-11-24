@@ -14,10 +14,10 @@ The models are in order. Each model has its default effort.
 | Role | First | Second | Third |
 | --- | --- | --- | --- |
 | Orchestrator | Opus 5.5, medium | | |
-| Planner | Fable 5.2, high | GPT-6.2 Astra, high | |
-| Designer, test author | Opus 5.5, high | GPT-6.2 Astra, high | |
+| Planner | Fable 5.2, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
+| Designer, test author | Opus 5.5, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
 | Implementer | Grok 4.7, xhigh | GPT-6.2 Sol, high | DeepSeek V4.1 Flash, max |
-| Reviewer | Gemini 4 Neon, high | GPT-6.2 Astra, high | |
+| Reviewer | Gemini 4 Neon, high | GPT-6.2 Astra, high | Opus 5.5, high |
 | Tester | Hy4 Flash Free, high | DeepSeek V4.1 Flash, max | Haiku 5.5, medium |
 | Explorer, researcher, other | DeepSeek V4.1 Flash, max | Haiku 5.5, medium | |
 
