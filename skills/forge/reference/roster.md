@@ -27,11 +27,11 @@ The orchestrator is the thread itself. Its row tells which model to start the th
 
 The providers for each model are in order. Each cell is: `provider` / `model id` / the name of the effort option.
 
-| Model | First | Second | Third |
-| --- | --- | --- | --- |
-| Opus 5.5 | `claudeAgent` / `claude-opus-5-5` / `effort` | `antigravity` / `claude-opus-5-5` / `thought_level` | `cursor` / `claude-opus-5-5` / `effort` |
-| Fable 5.2 | `claudeAgent` / `claude-fable-5-2` / `effort` | `cursor` / `claude-fable-5-2` / `effort` | |
-| Haiku 5.5 | `claudeAgent` / `claude-haiku-5-5` / `effort` | `cursor` / `claude-haiku-5-5` / `reasoning_effort` | |
+| Model | First | Second | Third | Fourth |
+| --- | --- | --- | --- | --- |
+| Opus 5.5 | `claudeAgent` / `claude-opus-5-5` / `effort` | `antigravity` / `claude-opus-5-5` / `thought_level` | `cursor` / `claude-opus-5-5` / `effort` | `pi` / `anthropic/claude-opus-5-5` / `thinking` |
+| Fable 5.2 | `claudeAgent` / `claude-fable-5-2` / `effort` | `cursor` / `claude-fable-5-2` / `effort` | `pi` / `anthropic/claude-fable-5-2` / `thinking` | |
+| Haiku 5.5 | `claudeAgent` / `claude-haiku-5-5` / `effort` | `cursor` / `claude-haiku-5-5` / `reasoning_effort` | `pi` / `anthropic/claude-haiku-5-5` / `thinking` | |
 | Gemini 4 Neon | `antigravity` / `gemini-4-neon` / `thought_level` | `cursor` / `gemini-4-neon` / `reasoning_effort` | |
 | Grok 4.7 | `cursor` / `grok-4.7` / `reasoning_effort` | | |
 | GPT-6.2 Astra | `codex` / `gpt-6.2-astra` / `reasoningEffort` | | |
