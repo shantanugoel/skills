@@ -25,7 +25,7 @@ Draft the `UI` doc (default `docs/design-language.md`) from `<forge>/templates/d
 
 Read the milestone draft, the `UI` doc, and current UI code. Cover only cross-slice UI decisions: shared navigation/shell, new reusable primitives or tokens, and consistent interaction patterns across slices.
 
-**Return:** Concise cross-slice `## UX/UI design` comment (≤1 screen).
+**Return:** Concise cross-slice `## UX/UI design` section (≤1 screen, for the milestone body).
 
 ## Mode: Screen design (`forge run` with `ui` flag)
 
@@ -40,4 +40,4 @@ Read the issue, the `UI` doc, and relevant screens/components. Keep to ~1 screen
 **Responsive & accessibility:** behavior across target viewports/input modes, keyboard/focus flow, and contrast/ARIA needs.
 ```
 
-**Return:** The `## UX/UI design` comment and any `UI` doc additions `implementer` must make in the PR.
+**Return:** The `## UX/UI design` section (for the issue body) and any `UI` doc additions `implementer` must make in the PR.

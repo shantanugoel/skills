@@ -22,8 +22,8 @@ Verify before starting (if any fails, inform owner and stop):
 ## 3. Stages
 
 1. **Spec:** `planner` (`Issue`), or write yourself for a small issue (`templates/issue.md`). Confirm checks are observable and in scope, then update issue body.
-2. **Design (by flag, per `orchestration.md`):** `ux-designer` (`Screen design`) for `ui` (when `UI` ≠ `none`); `designer` (`Issue or milestone design`) for `design`. Post returned comment(s).
-3. **Tests first (`test-first`):** `test-author` in its own worktree; post stage comment noting `--no-verify`.
+2. **Design (by flag, per `orchestration.md`):** `ux-designer` (`Screen design`) for `ui` (when `UI` ≠ `none`); `designer` (`Issue or milestone design`) for `design`. Write or update the `## UX/UI design` / `## Design` section(s) in the issue body.
+3. **Tests first (`test-first`):** `test-author` in its own worktree; post handoff comment noting `--no-verify` (stage and model).
 4. **Build:** `implementer` (`Build`) in its own worktree (naming Step 3's branch if created); open PR per `tracker-<tracker>.md`.
 5. **Review:** `reviewer` (`Pull request`) with the PR; post review comment.
 6. **Verify:** `tester` (`Pull request`, may run in parallel with Step 5; skip if no externally observable behavior); post test report.

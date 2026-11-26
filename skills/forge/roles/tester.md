@@ -21,7 +21,7 @@ Verify the built program end-to-end against observable behavior. Never edit code
 
 ## Mode: Pull request (`forge run`)
 
-1. Read acceptance checks, UX design comment (if `ui`), the `UI` doc (if set), and the PR's "How to verify".
+1. Read the issue (acceptance checks and any `## UX/UI design` section if `ui`), the `UI` doc (if set), and the PR's "How to verify".
 2. Check out the PR branch in a temporary detached worktree (per `tracker-<tracker>.md`) and build it.
 3. Run the real program per `Run` / `Browser`, execute every check, and probe nearest failure modes (mid-flight kill/restart, bad input, duplicate action; for races/flakes, run concurrent parallel copies, e.g., 10 × 3 rounds).
 4. For `ui` changes: inspect screenshots at the `UI` doc's target viewports across `empty`, `loading`, `error`, and `done` states; fail on layout breaks or clear design-language violations.

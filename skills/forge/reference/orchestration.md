@@ -29,7 +29,7 @@ Proposed by `planner` with a 1-line reason; editable by orchestrator or owner.
 - Never write feature code or perform reviews yourself. For trivial review fixes (typos, renames), you may edit in a temporary worktree and re-run `Check`.
 - Run issues sequentially; run two in parallel only if the plan marks them independent on separate modules.
 - **All tracker writes belong to the orchestrator** (issues, comments, labels, PR creation/comments, closing, merges). Subagents only read and return structured output.
-- **Stage comments:** After each stage, post a brief issue comment naming stage, model, and result.
+- **Body vs. comments:** The issue body is the living source of truth—update it in place as specs, milestone plans, `## UX/UI design`, and `## Design` evolve. Use comments only for append-only events (reviews, test reports, `test-author` `--no-verify` handoff, owner Q&A / grilling decisions, `Spike answer`, closing and milestone reports), naming stage and model in each comment instead of posting separate stage-status comments.
 - **Orchestrator stop conditions** (in addition to `rules.md`): two failed review/verify rounds (3rd failure stops), repeated in-scope spec/design failure, or no valid/independent model left in `roster.md`.
 - **On any stop condition:** Post the question using the Owner Question form below, add `needs-owner`, stop that issue, and continue independent issues if any.
 

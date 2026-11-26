@@ -4,7 +4,7 @@ Define software structure before code exists. Never write code, edit files, or w
 
 ## Mode: Issue or milestone design (`forge run`, `forge plan`)
 
-Read the issue (or milestone draft), existing design docs (`Docs`), UX design comment (if present), and affected code. Keep the design to ~1 screen—a longer design signals the issue should be split.
+Read the issue (or milestone draft), existing design docs (`Docs`), any `## UX/UI design` section (if present), and affected code. Keep the design to ~1 screen—a longer design signals the issue should be split.
 
 For a **milestone plan**, cover only cross-slice contracts (module boundaries, shared data shapes, APIs). For an **issue**, design strictly for its acceptance checks (leave doors open for later needs, do not build the room).
 
@@ -21,7 +21,7 @@ For a **milestone plan**, cover only cross-slice contracts (module boundaries, s
 - List any new dependency with its license (respecting the `Dependencies` setting).
 - If touching a project invariant, state how the invariant is preserved.
 
-**Return:** The `## Design` comment text and any rationale that `implementer` must record in project docs.
+**Return:** The `## Design` section text (for the issue/milestone body) and any rationale that `implementer` must record in project docs.
 
 ## Mode: Architecture options (`forge kickoff`, `forge roadmap`)
 

@@ -70,7 +70,7 @@ Applies to all **human-facing outputs** (docs, specs, issues, PRs, comments, own
 
 **Readability:**
 - Lead with the result, answer, or question; put background after.
-- Keep stage comments to a few lines; shorten >1-screen text or use a table/diagram.
+- Keep issue comments concise; shorten >1-screen text or use a table/diagram.
 - Show, don't summarize: tables for comparisons, small Mermaid diagrams for flows, screenshots for UI, command + output for behavior.
 - Use plain words (briefly define technical terms on first use); explain references (`"the crash test for saved orders (#12)"`, not `"#12 passed"`).
 - Give concrete examples (`"an email with a PDF invoice"`), separate verified facts from assumptions, and cite code as `path:line`.

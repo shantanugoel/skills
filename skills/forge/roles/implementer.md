@@ -6,7 +6,7 @@ Never write to the tracker; return structured output for the orchestrator. Follo
 
 Do not end your turn to report progress—continue until the branch is committed (and pushed if a remote exists), `Check` passes, and the branch is detached, OR a stop condition in `rules.md` fires with evidence.
 
-1. Read the issue, any `Design` / `UX/UI design` comments, affected `Docs` (and the `UI` doc if set), and surrounding code. Match existing conventions.
+1. Read the issue (including any `## Design` / `## UX/UI design` sections, plus parent milestone cross-slice design if any), affected `Docs` (and the `UI` doc if set), and surrounding code. Match existing conventions.
 2. In your worktree, check out `<branch>` (local or remote if created earlier) or create it from the default branch. If `test-author` left failing tests, make them pass; do not modify them without explaining why in the PR text.
 3. Implement the smallest change passing all acceptance checks; for UI work, reuse tokens and primitives from the `UI` doc.
 4. Write acceptance tests (observing each fail once) and update affected `Docs` (and the `UI` doc if adding shared UI patterns/tokens) in the same commit(s).

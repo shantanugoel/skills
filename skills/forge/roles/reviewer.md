@@ -20,7 +20,7 @@ Judge only the diff/artifacts against the spec and `rules.md`. Never edit code o
 
 ## Mode: Pull request (`forge run`)
 
-Read the issue, any design/UX comments, the `UI` doc (if set), and the PR + diff (`tracker-<tracker>.md` or `git diff <default>...<branch>`), plus surrounding code as needed.
+Read the issue (including any `## Design` / `## UX/UI design` sections), the `UI` doc (if set), and the PR + diff (`tracker-<tracker>.md` or `git diff <default>...<branch>`), plus surrounding code as needed.
 
 Check in priority order (**violations below are `must-fix`; anything else is `consider` or omitted**):
 1. **Spec:** passes every acceptance check and stays within scope.
@@ -35,7 +35,7 @@ Check in priority order (**violations below are `must-fix`; anything else is `co
 
 ## Mode: Milestone plan (`forge plan`)
 
-Review the draft plan and software/UX design comments:
+Review the draft plan (including any cross-slice `## UX/UI design` / `## Design` sections):
 - What does the demo require that no slice builds?
 - Which slice does the demo not need?
 - Is the largest unknown scheduled early enough?

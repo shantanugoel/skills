@@ -30,7 +30,7 @@ Concrete end-to-end steps and expected visible results.
 Each with license and reason (or "none").
 
 ## Open questions
-Only decisions requiring the owner.
+Unresolved product/UX decisions, edge cases, failure expectations, or scope boundaries requiring the owner—never guess silently; give a recommended option for each.
 ```
 
 Slice rules:
@@ -38,6 +38,7 @@ Slice rules:
 - Slice 1 is the thinnest end-to-end path (fakes allowed); put the largest unknown first as a spike slice.
 - Size each slice to one single-sitting PR; include only what the demo needs (defer extras to Out of scope).
 - Slices deleting code must include updating affected docs in their checks.
+- Probe for gaps (demo edge cases, failure paths, UX expectations, Backlog overlaps, hidden assumptions) and list anything undecided under `## Open questions` for the orchestrator to clarify with the owner before design.
 
 **Return:** Draft milestone plan and ambiguities.
 
