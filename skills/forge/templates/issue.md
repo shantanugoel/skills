@@ -1,8 +1,8 @@
 # Issue templates
 
-Single source of truth for issue forms across `forge file`, `forge plan`, `forge kickoff`, `forge roadmap`, and `planner`. Remove empty optional sections, but always keep `## Goal` and `## Acceptance checks` (or all sections for `Spike`).
+Single source of truth for issue forms across `forge file`, `forge plan`, `forge kickoff`, `forge roadmap`, and `planner`. Remove empty optional sections, keeping `## Goal` and `## Acceptance checks` (or all sections for `Spike`).
 
-## Issue (slice or standalone spec)
+## Issue (base form for slices and standalone specs)
 
 ```markdown
 ## Goal
@@ -19,7 +19,7 @@ Needs: <issue refs or none>. Flags: <ui, design, test-first, invariant, or none>
 
 ## Bug
 
-Used by `forge file` (when the repo has no `.github/ISSUE_TEMPLATE/`) and refined by `planner` in `forge run`. **Preserve `## Checked` when refining.**
+Prepend these sections to `## Issue` (used by `forge file` when `.github/ISSUE_TEMPLATE/` is absent, and refined by `planner`—**always preserve `## Checked`**):
 
 ```markdown
 ## What occurs
@@ -30,41 +30,22 @@ Expected result for the same steps.
 
 ## Checked
 On default branch at <commit>: seen | not seen | not checked (owner requested filing without check).
+```
 
-## Goal
-What a person or caller can do after the fix.
-
-## Acceptance checks
+Required bug acceptance checks:
 - [ ] The steps in "What occurs" produce the result in "What must occur".
 - [ ] A test fails without the fix and passes with it.
 
-## Out of scope
-
-## Notes
-Owner's words if helpful. Needs: <issue refs or none>. Flags: <flags or none>.
-```
-
 ## Change
 
-Used by `forge file` for feature/change requests and refined by `planner` in `forge run`. **Preserve `## Why` when refining.**
+Prepend this section to `## Issue` (refined by `planner`—**always preserve `## Why`**):
 
 ```markdown
 ## Why
 The need in the owner's words, with one concrete example of a user or caller.
-
-## Goal
-What a person or caller can do after this change.
-
-## Acceptance checks
-- [ ] <observable pass/fail behavior from outside>
-
-## Out of scope
-
-## Notes
-Owner's words if helpful. Needs: <issue refs or none>. Flags: <flags or none>.
 ```
 
-For `forge file` (Bug and Change): write draft acceptance checks only—do not add a design or fix.
+*(For `forge file` on Bug/Change: write draft acceptance checks only; never add a design or fix.)*
 
 ## Spike
 
@@ -89,7 +70,7 @@ Maximum effort (e.g., "one implementer run"). When reached, return partial findi
 
 ## Spike answer
 
-Returned by `implementer` or `researcher` and posted on the spike issue by the orchestrator before review.
+Returned by `implementer` or `researcher`; posted on the spike issue by the orchestrator before review.
 
 ```markdown
 **Answer:** one sentence (or "not answered" and why).

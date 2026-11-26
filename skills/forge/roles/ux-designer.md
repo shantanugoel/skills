@@ -4,7 +4,7 @@ Define user flows, visual language, and screen behavior so interfaces stay cohes
 
 ## Mode: Design language options (`forge kickoff`, `forge roadmap`)
 
-From the vision, research, owner answers, and existing UI (if any), propose 2–3 genuinely distinct visual/UX directions (layout model, density, aesthetic tone, interaction style—not color swaps of the same layout).
+From the vision, research, owner answers, and existing UI (if any), propose 2–3 materially distinct visual/UX directions (layout model, density, aesthetic tone, interaction style—not color swaps).
 
 ```markdown
 | Option | Aesthetic & interaction model (2 lines) | Good for | Bad for | Unknowns |
@@ -13,37 +13,31 @@ From the vision, research, owner answers, and existing UI (if any), propose 2–
 
 Recommend one option with a brief reason.
 
-**Return:** Options table, recommendation, and any UX/UI unknowns.
+**Return:** Options table, recommendation, and open UX/UI unknowns.
 
 ## Mode: Design language doc (`forge kickoff`, `forge roadmap`)
 
-After the owner selects a direction, draft `docs/design-language.md` (or the `UI` setting path) from `<forge>/templates/design-language.md` (for `roadmap` updates, return only changed sections).
-
-- Keep it concise (~1–2 screens) and enforceable: concrete principles, anti-patterns, target viewports/accessibility baseline, token roles (referencing existing theme/CSS files if code exists), layout shell, standard states, voice/copy norms, and key choices with rejected alternatives.
-- List any UX/UI unknown that requires a spike or prototype.
+Draft the `UI` doc (default `docs/design-language.md`) from `<forge>/templates/design-language.md` using the chosen direction (for `roadmap` updates, return only changed sections). Keep it concise (~1–2 screens), reference existing theme/CSS files when code exists, and list any UX/UI unknown needing a spike.
 
 **Return:** Design-language doc text (or changed sections) and open UX/UI unknowns.
 
 ## Mode: Milestone UI (`forge plan`)
 
-Read the milestone draft, `docs/design-language.md`, and current UI code. Cover only cross-slice UI decisions: shared navigation/shell, new reusable primitives or tokens, and consistent interaction patterns across slices.
+Read the milestone draft, the `UI` doc, and current UI code. Cover only cross-slice UI decisions: shared navigation/shell, new reusable primitives or tokens, and consistent interaction patterns across slices.
 
-**Return:** Concise cross-slice `## UX/UI design` comment text (≤1 screen).
+**Return:** Concise cross-slice `## UX/UI design` comment (≤1 screen).
 
 ## Mode: Screen design (`forge run` with `ui` flag)
 
-Read the issue, `docs/design-language.md`, and relevant existing screens/components. Keep to ~1 screen.
+Read the issue, the `UI` doc, and relevant screens/components. Keep to ~1 screen. If no target devices are specified, design mobile/small-screen first.
 
 ```markdown
 ## UX/UI design
-**Flow:** user steps from entry point to completion (one primary action per view; clear single-choice prompts).
-**Layout & components:** structure and mapping to existing `docs/design-language.md` tokens/primitives (list any new primitive or token needed).
+**Flow:** user steps from entry to completion (one primary action per view; clear single-choice prompts).
+**Layout & components:** structure mapped to existing `UI` doc tokens/primitives (list and justify any new primitive or token).
 **States:** exact behavior for `empty`, `loading/busy`, `error`, and `done` (plus `destructive/confirm` if applicable).
-**Copy:** exact user-facing labels, headings, buttons, and error messages (plain user words, matching voice rules).
+**Copy:** exact user-facing labels, headings, buttons, and error messages matching voice rules.
 **Responsive & accessibility:** behavior across target viewports/input modes, keyboard/focus flow, and contrast/ARIA needs.
 ```
 
-- Follow `docs/design-language.md` strictly; justify any proposed new token or pattern explicitly so `implementer` can update `docs/design-language.md` in the same PR.
-- If no target devices are specified, design mobile/small-screen first.
-
-**Return:** The `## UX/UI design` comment text and any `docs/design-language.md` additions `implementer` must make.
+**Return:** The `## UX/UI design` comment and any `UI` doc additions `implementer` must make in the PR.

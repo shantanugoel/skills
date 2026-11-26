@@ -1,41 +1,37 @@
 # forge run <issue>
 
-Take one issue (or spike) from spec to merged change (or closed answer). All tracker writes and brief stage comments (`stage, model, result`) are performed by the orchestrator.
+Take one issue (or spike) from spec to merged change (or closed answer).
 
 ## 1. Read issue and check for spike
 
 Read `<issue>` first.
 
-**If labeled `spike`**, execute only these stages and stop:
-1. **Spec:** brief `planner` (`Spike`)—or refine yourself if already crisp—and update the issue body.
-2. **Experiment:** brief `implementer` (`Spike`) in a worktree (or `researcher` without a worktree if no code is needed). Post the returned `Spike answer` as a comment on the issue. *(Exhausting the time box with partial findings is a valid result, not a failure.)*
-3. **Review:** brief `reviewer` (`Spike`). Post the review comment. On `changes-needed`, send findings back to `implementer`/`researcher` (max 2 fix rounds; 3rd failure stops for owner).
-4. **Close:** delete the experiment branch (local + remote if pushed) and close the issue. For standalone spikes, tell the owner to apply the answer with `forge roadmap` (`run-milestone` handles milestone spikes).
+**If labeled `spike`**, run only these stages and stop:
+1. **Spec:** `planner` (`Spike`)—or refine yourself if already crisp—and update the issue body.
+2. **Experiment:** `implementer` (`Spike`) in a worktree (or `researcher` without a worktree if no code is needed). Post the returned `Spike answer` on the issue. *(Time-box exhaustion with partial findings is a valid result, not a failure.)*
+3. **Review:** `reviewer` (`Spike`); post comment. On `changes-needed`, loop back to `implementer`/`researcher` (max 2 fix rounds).
+4. **Close:** delete experiment branch (local + remote if pushed) and close issue. For standalone spikes, tell owner to run `forge roadmap` (`run-milestone` handles milestone spikes).
 
 ## 2. Preconditions (regular issues)
 
-Verify before starting (if any fails, inform the owner and stop):
-- If a slice, its parent milestone has an approved plan. If standalone, it fits one PR (else advise splitting in `light` or a milestone in `full`).
-- Every issue listed under `Needs` is closed.
+Verify before starting (if any fails, inform owner and stop):
+- Slice has an approved milestone plan; standalone issue fits one PR (else advise splitting in `light` or a milestone in `full`).
+- Every issue under `Needs` is closed.
 - Default branch passes `Check` (skip if `Check` is `none` or this issue adds `Check`).
 
 ## 3. Stages
 
-1. **Spec:** brief `planner` (`Issue`), or write the spec yourself for a small issue (`templates/issue.md`). Verify all checks are observable and within milestone scope, then update the issue body.
-2. **Design (by flag):**
-   - If `ui` flag (and `UI` ≠ `none`): brief `ux-designer` (`Screen design`) and post its comment.
-   - If `design` flag: brief `designer` (`Issue or milestone design`) and post its comment.
-   - When both `ui` and `design` apply, run `ux-designer` → `designer` by default (or in parallel if the API/data contract is already fixed).
-3. **Tests first (`test-first` flag):** brief `test-author` in its own worktree. Post the stage comment noting `--no-verify` was used for intentionally failing tests.
-4. **Build:** brief `implementer` (`Build`) in its own worktree (naming the branch if Step 3 created one). Open the PR using the returned PR title/body per `tracker-<tracker>.md`.
-5. **Review:** brief `reviewer` (`Pull request`) with the PR. Post the review comment.
-6. **Verify:** brief `tester` (`Pull request`) with the PR (may run in parallel with Step 5; skip if the change has no externally observable behavior). Post the test report.
+1. **Spec:** `planner` (`Issue`), or write yourself for a small issue (`templates/issue.md`). Confirm checks are observable and in scope, then update issue body.
+2. **Design (by flag, per `orchestration.md`):** `ux-designer` (`Screen design`) for `ui` (when `UI` ≠ `none`); `designer` (`Issue or milestone design`) for `design`. Post returned comment(s).
+3. **Tests first (`test-first`):** `test-author` in its own worktree; post stage comment noting `--no-verify`.
+4. **Build:** `implementer` (`Build`) in its own worktree (naming Step 3's branch if created); open PR per `tracker-<tracker>.md`.
+5. **Review:** `reviewer` (`Pull request`) with the PR; post review comment.
+6. **Verify:** `tester` (`Pull request`, may run in parallel with Step 5; skip if no externally observable behavior); post test report.
 7. **Fix loop:** if Review is `changes-needed` or Verify is `fail`:
-   - Combined findings from a parallel Review + Verify pass count as **1 round** (max 2 rounds; a 3rd failure triggers a stop condition).
-   - **Code fault:** send findings to `implementer` on the same branch, then re-run Review and Verify for what changed. If `implementer` disputes a `must-fix` without changing code, post its rationale and re-check with `reviewer` (stop for owner if deadlocked).
-   - **In-scope spec or design fault:** loop back to Step 1 or Step 2 **once** (counts as a round; re-run affected downstream steps, including `test-author` if interfaces/checks changed). If fixing it changes scope, contradicts owner intent, or fails again, trigger a stop condition.
-8. **Owner checks:** if acceptance checks include `(owner)` and `Process` is `light`, post evidence, add `needs-owner`, and stop until the owner confirms before merging. (In `full` process, `(owner)` checks defer to the milestone demo.)
-9. **Merge** (when Review is `approve` and Verify is `pass` or skipped):
-   1. Check out the PR branch in a temporary detached worktree, run `Check` yourself (unless `Check` is `none`), inspect the diff summary, and remove the temporary worktree.
-   2. Draft the closing comment: what was built, key decisions, follow-up issue links, and (`light` process) notable proposals/cleanup ideas.
-   3. Merge per `tracker-<tracker>.md` (for `local`, write the closing comment and `Status: closed` **before** committing the squash merge; for `github`, squash-merge, then post the closing comment and close the issue if still open).
+   - Combined findings from parallel Review + Verify count as **1 round** (max 2 rounds; 3rd failure stops for owner).
+   - **Code fault:** send findings to `implementer` on the same branch, then re-run Review and Verify on what changed. If `implementer` disputes a `must-fix` without changing code, post its rationale and re-check with `reviewer` (stop for owner if deadlocked).
+   - **In-scope spec/design fault:** loop back to Step 1 or 2 **once** (counts as a round; re-run affected downstream steps including `test-author` if interfaces/checks changed). Scope changes, intent conflicts, or repeat failures stop for owner.
+8. **Owner checks:** if checks include `(owner)` and `Process` is `light`, post evidence, add `needs-owner`, and wait for owner approval before merge. (In `full`, `(owner)` checks defer to the milestone demo.)
+9. **Merge** (Review = `approve` and Verify = `pass` or skipped):
+   1. Run `Check` yourself in a temporary detached worktree (unless `Check` is `none`), read the diff summary, and remove the worktree.
+   2. Merge per `tracker-<tracker>.md` with the closing comment (what was built, key decisions, follow-up links, and in `light` proposals/cleanup ideas) and ensure the issue is closed.
