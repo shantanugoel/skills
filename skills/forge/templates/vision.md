@@ -1,37 +1,33 @@
 # <Project name>
 
-<One sentence: what it is, and for whom.>
+<One sentence: what it is and for whom.>
 
 ## Problem
 
-Who has the problem, and what they do now. One real example of a person and a day with the problem.
+Who has the problem and what they do today. One concrete example of a person facing it.
 
 ## Vision
 
-What is true when the project works. A short scenario: a person who uses it, from the start to the result.
-
-## Users and devices
-
-Who uses it, and on which devices. Write "none" if the project has no screens.
+What is true when the project works: a short end-to-end scenario of someone using it.
 
 ## Goals
 
-What the first useful version lets a person do. Three to five items. Each item is something that a person can do.
+What the first useful version lets a person do (3–5 user-visible capabilities).
 
 - <A person can ...>
 
 ## Non-goals
 
-What we do not build, each with the reason. Agents read this section before they add scope.
+What we explicitly do not build, and why. Agents check this before adding scope.
 
 - <We do not ..., because ...>
 
 ## Constraints
 
-- **Platform and language:** <what is fixed, and why>
-- **Cost:** <paid services and models that are allowed, and the limit>
-- **Privacy and data:** <what data the project keeps, and where>
-- **Appetite:** <how much time the project is worth before we stop and think again>
+- **Platform and language:** <what is fixed and why>
+- **Cost:** <allowed paid services/models and budget limits>
+- **Privacy and data:** <what data is kept and where>
+- **Appetite:** <time worth investing before reassessing>
 
 ## Prior art
 
@@ -40,5 +36,7 @@ What we do not build, each with the reason. Agents read this section before they
 
 ## Open questions
 
-| Question | How we answer it (a spike, the owner, a milestone) | What waits on it |
+The single list of unresolved project questions.
+
+| Question | How we answer it (spike, owner, milestone) | What waits on it |
 | --- | --- | --- |

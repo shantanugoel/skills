@@ -1,45 +1,26 @@
 # forge plan <milestone>
 
-You are the orchestrator. Make one milestone into a plan that the owner can approve. Do not create slice issues, and
-do not start a slice before the owner approves.
+Turn one milestone into an owner-approved plan and slice list. Do not create slice issues or start building until the owner approves.
 
-## Read first
+**Guard:** if `Process` is not `full`, tell the owner this command requires `full` process (ask whether to switch or use `forge run`) and stop.
 
-1. `.agents/forge.md`. If the "Process" setting is not `full`, tell the owner that this command is for the full
-   process. Ask if they want to change the process or use `forge run`. Then stop.
-2. `<forge>/reference/workflow.md`, `<forge>/reference/rules.md`, and `<forge>/reference/tracker-<tracker>.md` for
-   the "Tracker" setting.
-3. `<forge>/reference/roster.md`. Apply the "Roster changes" of the settings, then the changes that the owner gave
-   for this run.
+## 1. Draft the plan
 
-## Steps
+1. **Read:** the milestone issue, Roadmap, Backlog, project docs (including `UI` doc if set), and last milestone report.
+2. **Resolve unknowns:** use `explorer`/`researcher` for quick questions; larger unknowns become an early spike slice.
+3. **Plan:** brief `planner` (`Milestone`) and post its draft as a comment on the milestone issue.
+4. **Cross-slice design (only if slices share contracts):**
+   - Shared UI shell, navigation, or primitives (when `UI` ≠ `none`) → `ux-designer` (`Milestone UI`), post comment.
+   - Shared module boundaries, data shapes, or APIs → `designer` (`Issue or milestone design`), post comment.
+   - When both apply, run `ux-designer` → `designer` (or in parallel if APIs are fixed).
+5. **Challenge:** brief `reviewer` (`Milestone plan`) with the draft plan and design comments; post its review comment.
+6. **Settle:** apply findings you agree with, then write the settled plan into the milestone issue body.
+7. **Stop for owner:** add `needs-owner` and present concisely: goal, demo, slices table (`title`, `flags`), backlog triage decisions, new dependencies, `(owner)` checks, and open questions (using `rules.md` Owner Question form).
 
-Brief each subagent in the form of "Brief for a subagent" in `workflow.md`.
+## 2. After owner approval
 
-1. **Read.** The milestone issue, the Roadmap issue, the Backlog issue, the documents of the project, and the report
-   on the last milestone.
-2. **Find the unknowns.** List what you must know before you can cut slices. Send an explorer or a researcher for
-   each unknown that a short task can answer. An unknown that needs real work becomes the first slice, as a spike.
-3. **Plan.** Brief the planner (role `planner`, "For a milestone"). It writes the plan as a draft comment on the
-   milestone issue.
-4. **Design.** If slices share a module boundary, a data shape or the API, brief the designer (role `designer`) for
-   that part only. It adds one comment.
-5. **Challenge.** Brief the reviewer (role `reviewer`, "For a milestone plan") with the draft and the design. Ask
-   four questions:
-   - What does the demo need that no slice builds?
-   - Which slice does the demo not need?
-   - Is the largest unknown early enough?
-   - Which flag is missing or not necessary?
-6. **Settle.** Apply the answers that you agree with. Then put the plan in the body of the milestone issue.
-7. **Stop for the owner.** Add the label `needs-owner`. Tell the owner, in a few lines: the goal, the demo, the slices
-   as a table (title, flags), the new dependencies, the `(owner)` checks, and each open question in the form of
-   "Writing for a person" in `rules.md`.
-
-## After the owner approves
-
-1. Apply the changes that the owner asked for.
-2. Create one issue for each slice, in the order of the plan, with the milestone as its parent. The body has the
-   goal, the draft checks, the flags and the needs, in the form of the planner role. In each "Needs" line, replace
-   the slice numbers of the plan with the references of the issues that you created. A spike slice uses the spike
-   form of `<forge>/templates/issue.md` and the label `spike`.
-3. Remove `needs-owner`. Tell the owner that `forge run-milestone <milestone>` can start.
+1. Apply owner edits to the milestone issue body and set `State: next`.
+2. Execute approved `Backlog triage` decisions (move items into this milestone, keep, or close with reason).
+3. Create slice issues in plan order with `<milestone>` as parent (use `Issue` or `Spike` form from `<forge>/templates/issue.md`; replace plan slice numbers in `Needs` with created issue refs; label spikes `spike`).
+4. Remove `needs-owner`. For `local` tracker, commit updated `.agents/issues/` per `Approved documents` in `orchestration.md`.
+5. Tell the owner `forge run-milestone <milestone>` is ready to start.

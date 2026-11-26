@@ -1,10 +1,10 @@
 # Architecture
 
-<One paragraph: the shape of the system, and the main reason for that shape.>
+<One paragraph: the shape of the system and the main reason for it.>
 
 ## Context
 
-A small Mermaid diagram: the system, its users, and the external systems that it uses.
+A small Mermaid diagram showing the system, its users, and external systems.
 
 ```mermaid
 flowchart LR
@@ -20,14 +20,14 @@ flowchart LR
 
 ## Data
 
-What the system stores, where, and in which format. What data goes between the parts.
+What the system stores, where, in what format, and what flows between parts.
 
 ## Choices
 
-Each choice that is difficult to change later, with the reason and the best option that we did not use.
+Decisions that are hard to reverse, with rationale and the best rejected alternative.
 
-- **<Choice>.** <The reason.> We did not use <option>, because <reason>.
+- **<Choice>.** <Reason.> We did not use <option>, because <reason>.
 
 ## Unknowns
 
-The technical questions that are open are in "Open questions" in `docs/vision.md`, each with its spike.
+Open technical questions live in "Open questions" in `docs/vision.md`, each linked to its spike.

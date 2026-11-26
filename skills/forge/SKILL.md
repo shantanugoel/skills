@@ -6,27 +6,23 @@ disable-model-invocation: true
 
 # forge
 
-The owner gives a command and its arguments: `forge <command> <arguments>`. The first word is the command.
+Syntax: `forge <command> <arguments> [one-run overrides]` (e.g., `"reviewer on Opus for this run"`).
+If no command or an unknown command is given, show this table and stop.
 
-| Command | What it does | File |
+| Command | Purpose | File |
 | --- | --- | --- |
-| `kickoff <idea>` | Turns an idea into a vision, an architecture and the first spikes, with research and questions to the owner. Offers to do `git init` and `init`. | `commands/kickoff.md` |
-| `init` | Asks the owner some questions and writes the forge settings of the project. | `commands/init.md` |
-| `roadmap <what changed>` | Creates or changes the roadmap, the milestones and the spikes. Applies a spike answer or a milestone report to the documents. | `commands/roadmap.md` |
-| `file <words>` | Makes a rough description of a bug or a wish into a correct issue. It does not fix it. | `commands/file.md` |
-| `run <issue>` | Moves one issue from its spec to a merged change. | `commands/run.md` |
-| `plan <milestone>` | Makes a plan and a list of slices for a milestone. Then it stops for the owner. Full process only. | `commands/plan.md` |
-| `run-milestone <milestone>` | Does all slices of an approved milestone. Then it stops for the demo. Full process only. | `commands/run-milestone.md` |
+| `kickoff <idea>` | Turn an idea into vision, architecture, design language (if UI), and first spikes/setup issue. Offers `git init` and `init`. | `commands/kickoff.md` |
+| `init` | Explore the repo, ask unresolved questions, and write `.agents/forge.md`. | `commands/init.md` |
+| `roadmap <what changed>` | Create or update roadmap, milestones, spikes, and docs; apply spike answers or milestone reports. | `commands/roadmap.md` |
+| `file <words>` | Turn a rough bug report or request into a well-formed issue without fixing it. | `commands/file.md` |
+| `run <issue>` | Take one issue (or spike) from spec to merge (or closed answer). | `commands/run.md` |
+| `plan <milestone>` | Draft a milestone plan and slice list, then stop for owner approval (`full` process only). | `commands/plan.md` |
+| `run-milestone <milestone>` | Execute all slices of an approved milestone, run the demo and doc check, then stop for owner acceptance (`full` process only). | `commands/run-milestone.md` |
 
-If there is no command, or the command is not in the table, show this table and stop.
+## Before every command
 
-## Before each command
-
-1. `<forge>` is the directory that contains this file. Find its absolute path. Each path in the forge files that
-   starts with `<forge>/` is in this directory.
-2. Read the file of the command, and obey it.
-3. Each command except `kickoff` and `init` needs the settings file of the project, `.agents/forge.md` in the root of the
-   repository. If it does not exist, tell the owner to run `forge init`, and stop.
-
-The owner can add changes for one run after the arguments, for example "reviewer on Opus for this run". These
-changes apply only to that run.
+1. Resolve `<forge>` to the absolute path of the directory containing this file. All `<forge>/...` paths refer to it.
+2. Except for `kickoff` and `init`, require `.agents/forge.md` in the repository root. If missing, tell the owner to run `forge init` and stop.
+3. Read `<forge>/reference/rules.md`, `<forge>/reference/orchestration.md`, and the command file.
+4. When `.agents/forge.md` exists (and the command uses the tracker or subagents), also read `.agents/forge.md`, `<forge>/reference/tracker-<tracker>.md`, and `<forge>/reference/roster.md`.
+5. Apply roster overrides in order: `roster.md` < `.agents/forge.md` ("Roster changes") < one-run overrides from the owner's command.

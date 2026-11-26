@@ -1,89 +1,61 @@
 # forge init
 
-Make the project ready for forge. Find each setting that you can find yourself. Ask the owner only about the rest.
-Do not change code.
+Inspect the repository, ask only unresolved questions, and write `.agents/forge.md`. Do not modify application code.
 
-Read first: `<forge>/reference/workflow.md` ("Settings", "Tracker" and "Process"), `<forge>/reference/roster.md`, and
-`<forge>/templates/forge.md`.
+Also read `<forge>/templates/forge.md` (single source of truth for settings and defaults) and `<forge>/reference/roster.md`. When invoked from `forge kickoff`, seed proposals from the kickoff docs (`docs/vision.md`, `docs/architecture.md`, `docs/design-language.md`), reuse kickoff's process/tracker choices, and skip proposing a separate check-setup issue (kickoff already plans it).
 
-`forge kickoff` can start this command for a new project. Then use the kickoff documents (`docs/vision.md` and
-`docs/architecture.md`) for the proposals: the process, the docs, the invariants, the users and devices, and the
-models. A new project has no check yet. Write `none yet` and propose an issue that adds it.
+## 1. Explore (read-only; ask no questions yet)
 
-## 1. Explore
-
-Read what exists. Do not guess.
-
-- `.agents/forge.md`. If it exists, forge was set up before. Use its values as the proposals, and change only what the
-  owner changes.
-- `git remote -v`. Is the repository on GitHub? Run `gh repo view --json nameWithOwner,isFork,parent` to make sure
-  that `gh` can reach it, and to find the repository that gets the issues. If the repository is a fork, ask the owner
-  if the issues go to the fork or to the parent. For the parent, write the "Repository" setting.
-- `README.md`, `AGENTS.md`, `CLAUDE.md`, the build files, the CI configuration, the `scripts/` directory, the git
-  hooks, `.github/`, and the list of documents.
-- Signs of a release: tags, a published package, a changelog.
+Inspect what exists—do not guess:
+- `.agents/forge.md` (if present, treat existing values as defaults and update only what changes).
+- `git remote -v` and `gh repo view --json nameWithOwner,isFork,parent` (check GitHub reachability and fork status).
+- `README.md`, `AGENTS.md`, `CLAUDE.md`, build/CI configs, `scripts/`, git hooks, `.github/`, and existing docs.
+- UI/design artifacts: frontend/app code, CSS tokens/theme files, Tailwind/component configs, `docs/design-language.md`.
+- Release indicators: git tags, published package metadata, changelog.
 
 ## 2. Ask
 
-Tell the owner in a few lines what you found. Then ask the questions in this order. Ask one question, wait for the
-answer, then ask the next. Put the recommended answer first, so that the owner can accept it with one word. Skip a
-question when the exploration answered it clearly, and tell the owner the value that you used.
+Summarize findings in a few lines. Then ask unresolved items in order, **one question at a time**, recommended option first (answerable in one word). Skip anything exploration or `kickoff` clearly answered, stating the chosen value:
 
-1. **Process.** `light` or `full`. Explain the difference in two lines (refer to "Process" in `workflow.md`).
-   Recommend `light`, unless the project is a product with a plan in steps.
-2. **Tracker.** `github` if a remote is on GitHub and `gh` can reach it. If not, `local`. With `github`, the
-   repository must be on GitHub. If it is not, ask for the URL, or use `local`.
-3. **Check.** One command that checks format, lint and tests. Propose the command that CI runs, or a script that
-   runs the commands that you found. If no check exists, propose to make one as the first issue.
-4. **Run.** How a tester starts the real program. Propose the steps from `README.md` or the build files. For a
-   library with no program, propose "call the public API from a test program".
-5. **Docs.** The documents to keep correct. Propose the documents that you found, with one line about each.
-6. **Invariants.** Rules that a change must not make weaker. Propose some from what you read, or "none".
-7. **Users and devices.** Ask only if the project has screens.
-8. **Released.** Ask only if the exploration did not show it.
-9. **Models.** Ask only if the project calls a model.
-10. **Roster.** Show the roles of the default roster in one short table. Ask if it is correct for this project.
-    Recommend "yes".
+1. **Process:** `light` or `full` (explain difference in 2 lines; recommend `light` unless staged product with demos).
+2. **Tracker:** `github` (if GitHub remote is reachable via `gh`) or `local`. If GitHub repo is a fork, ask whether issues go to the fork or upstream (`Repository` setting).
+3. **Check:** single format/lint/test command (propose CI command or script; if none exists, set `none` and propose creating it as the first issue unless called from `kickoff`).
+4. **Run:** how `tester` runs the real program (or `"call the public API from a test program"` for libraries).
+5. **UI & Browser:** if the project has screens, set `UI` to `docs/design-language.md` (or existing design-doc path) and confirm `Browser`; otherwise set `UI` to `none`.
+6. **Docs:** documents to keep accurate (include `docs/design-language.md` when `UI` ≠ `none`).
+7. **Invariants:** rules no change may weaken (propose from repo or `none`).
+8. **Released:** ask only if exploration was inconclusive.
+9. **Models:** ask only if the project calls LLMs/models.
+10. **Roster:** show default role order in a compact table; ask whether it fits (recommend `yes`).
 
-Use the default of `workflow.md` for each other setting.
+Use defaults from `<forge>/templates/forge.md` for all other settings.
 
 ## 3. Confirm
 
-Make the draft of `.agents/forge.md` from the template. Write each setting in the table, also the settings that have
-the default value, so that the owner can see and edit all of them. Show the draft to the owner. Let the owner change
-it.
+Draft `.agents/forge.md` from `<forge>/templates/forge.md` showing every setting (including defaults) so the owner can review and edit all of them. Apply changes until approved.
 
 ## 4. Write
 
-1. Write `.agents/forge.md`.
-2. Add the evidence directory to `.gitignore`.
-3. Add this block to the project instructions, so that each agent knows about forge. If `CLAUDE.md` exists and does
-   not only import `AGENTS.md`, edit `CLAUDE.md`. Else, if `AGENTS.md` exists, edit `AGENTS.md`. If neither exists,
-   ask the owner which file to create. If the block exists, replace it.
+1. Add the `Evidence` directory to `.gitignore`.
+2. Add or replace this block in project instructions (`CLAUDE.md` if it exists and does not merely import `AGENTS.md`; else `AGENTS.md`; if neither exists, ask which file to create):
 
    ```markdown
    ## Agent workflow
 
-   This project uses the `forge` skill. Its settings are in `.agents/forge.md`. The owner starts it with
-   `forge <command>`. Do not start it without the owner.
+   This project uses the `forge` skill. Settings live in `.agents/forge.md`. Only run `forge <command>` when explicitly invoked by the owner.
    ```
 
-4. Read `<forge>/reference/tracker-<tracker>.md` for the selected tracker.
-5. Tracker `github`: ask the owner first. Then create the labels that do not exist: `needs-owner`, `bug`,
-   `enhancement`, `spike`, and for the full process `milestone`.
-6. Tracker `local`: create the directory `.agents/issues/`.
-7. Full process: ask the owner if you can create the Roadmap issue and the Backlog issue. Create them as the tracker
-   file tells. Write their references into the settings.
+3. Read `<forge>/reference/tracker-<tracker>.md`.
+4. `github` tracker: with owner permission, create any missing labels (`needs-owner`, `bug`, `enhancement`, `spike`, and `milestone` for `full`).
+5. `local` tracker: create `.agents/issues/`.
+6. `full` process: with owner permission, create Roadmap and Backlog issues and record their refs.
+7. Write `.agents/forge.md` once with all final values (including Roadmap/Backlog refs).
 
 ## 5. Done
 
-If `init` started from `forge kickoff`, skip this section and return to step 9 of kickoff.
+If invoked from `forge kickoff`, skip this step and return to `kickoff` Step 9.
 
-Tell the owner:
-
-- What you wrote and created, and what you propose but did not do (for example, a check script).
-- To commit the setup files (`.agents/forge.md`, `.gitignore`, the project instructions) on the default branch before
-  the first `forge run`. Worktrees start from the last commit, so they do not have files that are not committed.
-- The next command: `forge file` or `forge run` for the light process, or `forge roadmap` and `forge plan` for the full
-  process.
-- That they can edit `.agents/forge.md` directly.
+Otherwise tell the owner:
+- What was created/updated and any deferred proposals (e.g., adding a `Check` script).
+- To commit `.agents/forge.md`, `.gitignore`, project instructions (and `.agents/issues/` if `local` created issues) on the default branch before the first `forge run` (worktrees start from HEAD).
+- Next command: `forge file` / `forge run` (`light`), or `forge roadmap` / `forge plan` (`full`), and that `.agents/forge.md` can be edited directly.

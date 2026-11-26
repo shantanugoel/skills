@@ -1,86 +1,99 @@
 # Issue templates
 
-`forge file` uses these forms when the project has no issue templates. Use the bug form for a defect, and the change
-form for a wish or a new need. Delete a section that has nothing in it, except "Goal" and "Acceptance checks".
-`forge kickoff`, `forge roadmap` and `forge plan` use the spike form for a question that blocks a decision.
+Single source of truth for issue forms across `forge file`, `forge plan`, `forge kickoff`, `forge roadmap`, and `planner`. Remove empty optional sections, but always keep `## Goal` and `## Acceptance checks` (or all sections for `Spike`).
+
+## Issue (slice or standalone spec)
+
+```markdown
+## Goal
+What a person or caller can do after this change.
+
+## Acceptance checks
+- [ ] <observable pass/fail behavior from outside>
+
+## Out of scope
+
+## Notes
+Needs: <issue refs or none>. Flags: <ui, design, test-first, invariant, or none>.
+```
 
 ## Bug
 
-```
+Used by `forge file` (when the repo has no `.github/ISSUE_TEMPLATE/`) and refined by `planner` in `forge run`. **Preserve `## Checked` when refining.**
+
+```markdown
 ## What occurs
-The steps to see the bug, as a numbered list. Then what you see: the command and its output, or a screenshot.
-One real example.
+Numbered reproduction steps, then actual output (command + output, or screenshot). One real example.
 
 ## What must occur
-The correct result for the same steps.
+Expected result for the same steps.
 
 ## Checked
-On the default branch at <commit>: seen | not seen | not checked (the owner asked to file it without a check).
+On default branch at <commit>: seen | not seen | not checked (owner requested filing without check).
 
 ## Goal
-What a person or a caller can do after the fix.
+What a person or caller can do after the fix.
 
 ## Acceptance checks
-- [ ] The steps in "What occurs" give the result in "What must occur".
+- [ ] The steps in "What occurs" produce the result in "What must occur".
 - [ ] A test fails without the fix and passes with it.
 
 ## Out of scope
 
 ## Notes
-The words of the owner, if they help. Related issues.
+Owner's words if helpful. Needs: <issue refs or none>. Flags: <flags or none>.
 ```
 
 ## Change
 
-```
+Used by `forge file` for feature/change requests and refined by `planner` in `forge run`. **Preserve `## Why` when refining.**
+
+```markdown
 ## Why
-The need, in the words of the owner. One real example of a person or a caller who has the need.
+The need in the owner's words, with one concrete example of a user or caller.
 
 ## Goal
-What a person or a caller can do after this change.
+What a person or caller can do after this change.
 
 ## Acceptance checks
-- [ ] <something that a tester can see pass or fail from outside>
+- [ ] <observable pass/fail behavior from outside>
 
 ## Out of scope
 
 ## Notes
-The words of the owner, if they help. Related issues.
+Owner's words if helpful. Needs: <issue refs or none>. Flags: <flags or none>.
 ```
 
-For the bug form and the change form:
-
-- Write the acceptance checks as a draft. The planner makes them firm in `forge run`.
-- Do not add a design or a fix.
+For `forge file` (Bug and Change): write draft acceptance checks only—do not add a design or fix.
 
 ## Spike
 
-```
+```markdown
 ## Question
-One question, with one real example. "Can X do Y under Z?", not "Look into X".
+One specific question with a concrete example ("Can X do Y under Z?", not "Look into X").
 
 ## Why it is important
-The decision that waits for the answer, and the documents or milestones that change with it.
+The decision blocked by this answer, and which docs or milestones depend on it.
 
 ## Options
-The answers that we decide between. "None of these" is always an option.
+Candidate answers to compare. Always include "None of these".
 
 ## Evidence
-What answers the question: a measurement, a working call, a limit in the documents. Give a number where you can.
+What proves the answer (measurement, working call, documented limit — quantify where possible).
 
 ## Time box
-The maximum work, for example "one implementer run". When it ends, send back what you found.
+Maximum effort (e.g., "one implementer run"). When reached, return partial findings.
 
 ## Out of scope
 ```
 
 ## Spike answer
 
-The implementer or the researcher writes this comment on the spike issue.
+Returned by `implementer` or `researcher` and posted on the spike issue by the orchestrator before review.
 
-```
-**Answer:** one sentence. Or "not answered", and the reason.
-**Evidence:** the commands and their output, the numbers, the links. Tell what you ran and what you only read.
-**Recommendation:** the option, and the reason in one sentence.
-**Still unknown:** what the experiment did not show.
+```markdown
+**Answer:** one sentence (or "not answered" and why).
+**Evidence:** commands + output, measurements, links. State what was run vs only read.
+**Recommendation:** chosen option and one-sentence reason.
+**Still unknown:** what the experiment did not cover.
 ```

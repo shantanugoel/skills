@@ -1,35 +1,24 @@
 # Tracker: local
 
-Issues are Markdown files in the repository. There is no server. A "pull request" is a branch and a section in the
-issue file.
+Issues are Markdown files in `<main checkout>/.agents/issues/<NNN>-<slug>.md` (`<NNN>` is the next zero-padded 3-digit number, e.g., `012`). Always reference issues by `<NNN>` and always use `<main checkout>` in paths (uncommitted issue files do not exist in worktrees). A "PR" is a branch plus a `## Pull request` section in the issue file.
 
-## Files
+Only the orchestrator modifies issue files. Commit `.agents/issues/` on the default branch during merges and when committing approved `kickoff`/`roadmap`/`plan` outputs.
 
-- Each issue is one file: `<main checkout>/.agents/issues/<NNN>-<slug>.md`. `<NNN>` is the next free number, with
-  three digits, for example `012`. An issue reference is always these three digits. Use them in each "Parent" line,
-  each "Needs" line and each comment.
-- `<main checkout>` is the absolute path of the main checkout of the repository. Use it in each path. A worktree does
-  not have the issue files that are not committed yet.
-- Only the orchestrator and the commands change issue files. A subagent reads the issue file, and sends back its
-  comments and its pull request text. The orchestrator writes them into the file.
-- The orchestrator commits the issue files on the default branch, in the same commit as a merge. Before that, they
-  are changes in the main checkout that are not committed.
+## File format
 
-An issue file has this form:
-
-```
+```markdown
 # <title>
 
 Status: open | closed
 Labels: <label>, <label>
-Parent: <NNN> or none
-Branch: <branch> or none
+Parent: <NNN> | none
+Branch: <branch> | none
 
-<body: the spec, in the form of the planner role>
+<body: issue spec>
 
 ## Pull request
 
-<the pull request text of the implementer, when the build is done>
+<PR text from implementer>
 
 ## Comments
 
@@ -42,20 +31,20 @@ Branch: <branch> or none
 | Action | How |
 | --- | --- |
 | Find issues | `grep -rliE "<word>\|<word>" <main checkout>/.agents/issues/` |
-| List open issues with a label | `grep -lE "^Labels:.*\b<label>\b" <main checkout>/.agents/issues/*.md`, then keep the files with `Status: open` |
+| List open issues by label | `grep -lE "^Labels:.*\b<label>\b" <main checkout>/.agents/issues/*.md` filtered to `Status: open` |
 | Read an issue | Read the file. |
-| List the children of an issue | `grep -l "^Parent: <NNN>$" <main checkout>/.agents/issues/*.md` |
-| Create an issue | Write a new file with the next free number. Set `Status: open`. |
-| Edit the body of an issue | Change the body. Do not change the "Comments" section. |
-| Comment on an issue | Add a comment at the end of the "Comments" section. Do not change an earlier comment. |
-| Add or remove a label | Change the "Labels" line. |
-| Close an issue | Add a comment with the reason, and set `Status: closed`. |
-| Open a pull request | The implementer commits on the branch, and sends back the branch and the pull request text. The orchestrator sets the "Branch" line and writes the text in the "Pull request" section. |
-| Update a pull request | Commit on the same branch. |
-| Read a pull request | Read the "Pull request" section. Read the diff: `git diff <default branch>...<branch>`. |
-| Check out a pull request | In a temporary worktree, not in the main checkout: `git worktree add --detach <tmp> <branch>`. Remove it when you are done: `git worktree remove <tmp>`. |
-| Comment on a pull request | Comment on the issue. Start the comment with "Pull request:". |
-| Merge a pull request | In the main checkout, on the default branch: (1) `git merge --squash <branch>`. (2) Close the issue. (3) `git add` the issue file, and each other issue file that this run changed. (4) `git commit -s` with the title and the reference of the issue. (5) `git branch -D <branch>`. |
+| List child issues | `grep -l "^Parent: <NNN>$" <main checkout>/.agents/issues/*.md` |
+| Create an issue | Create `<NNN>-<slug>.md` with `Status: open`. |
+| Edit an issue body | Replace body only; preserve `## Pull request` and `## Comments`. |
+| Comment on an issue | Append a new `### <date> <role> (<model>)` entry under `## Comments`. Never edit earlier comments. |
+| Add / remove label | Edit the `Labels:` line. |
+| Close an issue | Append closing comment and set `Status: closed`. |
+| Open a PR | Set `Branch: <branch>` and write PR text under `## Pull request`. |
+| Update a PR | Implementer commits (and pushes if remote exists) on `<branch>`; update `## Pull request` if text changed. |
+| Read a PR & diff | Read `## Pull request` and run `git diff <default branch>...<branch>`. |
+| Check out a PR | Temporary detached worktree: `git worktree add --detach <tmp> <branch>`. Clean up: `git worktree remove <tmp>`. |
+| Comment on a PR | Append comment to the issue prefixed with `Pull request:`. |
+| Merge a PR | In `<main checkout>` on the default branch: (1) `git merge --squash <branch>`, (2) append the closing comment and set `Status: closed`, (3) `git add` the issue file and any other issue files modified by this run, (4) `git commit -s` referencing the issue title and `<NNN>`, (5) delete the branch (local + remote if pushed), (6) push default branch if remote exists. |
+| Delete a branch (spikes) | `git branch -D <branch>` and `git push origin --delete <branch>` (if pushed). |
 
-- If the repository has a remote, push the branch and the default branch as usual.
-- "Closes" lines do nothing here. Close the issue yourself during the merge.
+- `Closes` lines are no-ops here; the merge step closes the issue before committing.

@@ -1,48 +1,33 @@
 # forge run-milestone <milestone>
 
-You are the orchestrator. Do each slice of an approved milestone, then stop for the demo. Work without the owner
-between the plan and the demo, except on a stop condition.
+Execute every slice of an approved milestone without interrupting the owner except on stop conditions, then run the demo and stop for owner acceptance.
 
-## Read first
+**Guards:**
+- `Process` must be `full`; otherwise inform the owner and stop.
+- `<milestone>` must already have slice issues (created after `forge plan` approval); otherwise tell the owner to run `forge plan <milestone>` and stop.
 
-1. `.agents/forge.md`. If the "Process" setting is not `full`, tell the owner that this command is for the full
-   process, and stop.
-2. `<forge>/commands/run.md`. You do it for each slice.
+Also read `<forge>/commands/run.md`. Update `<milestone>` body to `State: in progress`.
 
-## Before you start
+## 1. Slice loop
 
-The milestone has slice issues. They exist only after the owner approved the plan. If it has none, tell the owner to
-run `forge plan <milestone>`, and stop.
+1. List open slices of `<milestone>`. Pick the first in plan order whose `Needs` are all closed and that lacks `needs-owner`.
+2. Execute `<forge>/commands/run.md` for that slice.
+3. After each merge or closed spike, re-check remaining open slices. If the completed work changes a later slice's requirements, edit that slice and comment the reason on `<milestone>`. If the change expands milestone scope, trigger a stop condition.
+4. Repeat. If a slice blocks on `needs-owner`, continue with independent slices. When no slice can proceed, report what is waiting and stop.
 
-## Loop
+## 2. Finish milestone (when all slices are closed)
 
-1. List the open slices of the milestone. Select the first slice, in the order of the plan, whose "Needs" are all
-   closed and that does not have `needs-owner`.
-2. Do `forge run` for it.
-3. After the merge, or after the close of a spike, read the open slices again. If the merged work changed what one of them needs, edit that slice
-   and comment the reason on the milestone issue. If the change adds scope to the milestone, it is a stop condition.
-4. Do these steps again. When a slice stops for the owner, continue with slices that do not need it. When no slice
-   can continue, tell the owner what waits, and stop.
+1. **Demo run:** brief `tester` (`Milestone demo`) to run the demo script on a clean default-branch worktree, saving evidence to `<main checkout>/<Evidence>/demo-<milestone>/`. Post the report on `<milestone>`. Any failure becomes a new slice under `<milestone>`—return to Step 1.
+2. **Document check:** brief an `explorer` to compare all `Docs` (and `UI` doc if set) against the codebase for inaccuracies, omissions, or unclear steps. If findings exist, create one fix slice under `<milestone>` and run `forge run` for it.
+3. **Report:** post on `<milestone>`:
 
-## When all slices are closed
-
-1. **Demo run.** Brief the tester (role `tester`, "For a milestone demo") to do the demo script on the default branch
-   from a clean start. It saves the evidence under `<evidence directory>/demo-<milestone>/`. A failure becomes a new
-   slice. Go back to the loop.
-2. **Document check.** Brief an explorer to compare the documents that the "Docs" setting names with the code: what
-   is wrong, what is missing, what a new reader cannot follow. If there are findings, create one slice issue for them
-   under the milestone, and do `forge run` for it.
-3. **Report.** Comment on the milestone issue:
-
-   ```
+   ```markdown
    ## Report
    **Built:** what a person can do now.
-   **Demo:** the result of each demo step with its evidence, and the `(owner)` checks that the owner must do.
-   **Left out:** what the plan had and the milestone does not have, with the issue for each.
-   **Learned:** what must change in later milestones or in the way of work. Propose the change. Do not apply it.
-   **Cost:** the slices, the review rounds, and each stop for the owner.
+   **Demo:** result per demo step with evidence links, plus `(owner)` checks for the owner.
+   **Left out:** planned items deferred, with issue links.
+   **Learned:** proposed changes to later milestones or process (propose only; do not apply).
+   **Cost:** slice count, review rounds, and owner stops.
    ```
 
-4. **Stop for the owner.** Add the label `needs-owner` to the milestone. Show the owner the report and the
-   screenshots. The owner does the `(owner)` checks and accepts the milestone.
-   After that, close the milestone. Tell the owner to apply the "Learned" part with `forge roadmap`.
+4. **Owner acceptance:** add `needs-owner` to `<milestone>` and present the report and visual evidence. Once the owner completes `(owner)` checks and accepts, remove `needs-owner`, set `State: done`, close `<milestone>`, and tell the owner to apply `Learned` with `forge roadmap`.

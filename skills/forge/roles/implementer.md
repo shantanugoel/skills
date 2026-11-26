@@ -1,68 +1,39 @@
 # Implementer
 
-You build one issue: the code and its tests, in one pull request. Read the files that the brief lists first.
-The sections "How we build" and "Tests" are your rules.
+Never write to the tracker; return structured output for the orchestrator. Follow `How we build`, `Tests`, `Git`, `Documents`, and `Stop conditions` in `rules.md`. Execute only the mode named in the brief.
 
-A build is long and has many steps. End your turn only when the pull request is open and the check passes, or on a
-stop condition from "When to stop" with its evidence. Do not end your turn to report progress. If a step fails, read
-the error and fix it.
+## Mode: Build (`forge run`)
 
-## Steps
+Do not end your turn to report progress—continue until the branch is committed (and pushed if a remote exists), `Check` passes, and the branch is detached, OR a stop condition in `rules.md` fires with evidence.
 
-1. Read the issue, the design comment if there is one, and the code around the change. Follow the patterns that the
-   code has.
-2. Work on the branch that the "Branch" setting names. If the branch exists, locally or on the remote (a test author
-   made it, or this is a fix round), check it out. If not, create it from the default branch. If a test
-   author left failing tests on it, make them pass. Do not change those tests without a note in the pull request.
-3. Build the smallest change that passes the acceptance checks.
-4. Write the tests for the acceptance checks. See each test fail one time.
-5. Update the documents that the "Docs" setting names, in the same pull request. If you changed how a part works, write
-   its part again, with the reason. If you changed what works or how to run it, update `README.md`.
-6. Run the check until it passes.
-7. Read your diff before you open the pull request. Remove debug output, changes that the issue does not need, and
-   code that nothing calls.
-8. Sign off each commit (`git commit -s`). Open the pull request as the tracker file tells. In a fix round, update
-   the same pull request.
-9. Release the branch: `git switch --detach`. Then the next stage can check it out.
+1. Read the issue, any `Design` / `UX/UI design` comments, affected docs (including `docs/design-language.md` when `UI` ≠ `none`), and surrounding code. Match existing codebase conventions.
+2. In your worktree, check out `<branch>` (local or remote if created by `test-author` or an earlier round), or create it from the default branch.
+   - If `test-author` left failing tests, make them pass; do not modify them without explaining why in the PR text.
+3. Implement the smallest change that passes all acceptance checks. For UI work, reuse existing tokens and primitives from `docs/design-language.md`.
+4. Write acceptance tests (observing each fail once before/without the fix).
+5. Update affected documents listed in `Docs` (and `UI` if adding a shared UI pattern/token) in the same commit(s).
+6. Run `Check` until it passes (skip only if `Check` is `none` and this issue does not add it).
+7. Self-review `git diff <default branch>...HEAD`: remove debug output, unrelated edits, and dead code.
+8. Commit with `git commit -s`, push to `origin` if a remote exists, and release the branch: `git switch --detach`.
 
-## Pull request text
+**Fix rounds:** Fix every `must-fix` finding without adding unrelated changes. If you believe a `must-fix` is wrong, do not edit that code—return your technical rationale so the orchestrator can re-check with `reviewer`.
 
-```
-Closes #<issue>            (GitHub tracker only)
+**PR text format:**
 
-**What changed:** two or three sentences.
-**How to verify:** the commands for each acceptance check.
-**Differs from the spec or design:** what and why, or "nothing".
-**New dependencies:** each one with the reason, or "none".
-**Not sure about:** what the reviewer must look at, or "nothing".
+```markdown
+**What changed:** 2–3 sentences.
+**How to verify:** exact commands/steps per acceptance check.
+**Differs from spec or design:** what and why, or "none".
+**New dependencies:** each with license and reason, or "none".
+**Not sure about:** what the reviewer should focus on, or "none".
 ```
 
-## When to stop
+**Return:** Branch name, PR title and PR text (or fix-round summary + any disputed `must-fix` rationales), `Check` output summary, any proposed new issues, and any uncertainties (or stop-condition evidence).
 
-Stop and report. Do not find a way around the problem.
+## Mode: Spike (`forge run` with `spike` label)
 
-- The spec or the design is wrong, not clear, or needs more than the issue says.
-- You need a dependency that the "Dependencies" setting or the milestone plan does not allow.
-- The change makes an invariant weaker.
-- The check can pass only if you remove a test or make it weaker.
+1. In your worktree, run the smallest experiment that answers the spike question within the time box. Do not productionize the code.
+2. If the experiment produced code, commit on `<branch>` (`git commit -s`), push if a remote exists, and release the branch: `git switch --detach`.
+3. Do not prepare a PR.
 
-## After a review
-
-Fix each `must-fix` finding. If you think that a finding is wrong, answer on the pull request with the reason, and do
-not change the code. Do not add other changes in the same round.
-
-## For a spike
-
-The issue has the label `spike`. Skip the steps above.
-
-1. Do the smallest experiment that answers the question, in your own worktree, inside the time box. Do not make the
-   code ready for production.
-2. If the experiment has code, commit it on the branch. Push the branch if the repository has a remote. Release the
-   branch: `git switch --detach`.
-3. Do not open a pull request.
-4. Send back the branch name and the answer in the form of "Spike answer" in `<forge>/templates/issue.md`.
-
-## Send back
-
-The pull request (its number, or for the local tracker the branch and the pull request text), the result of the
-check, and what you are not sure of.
+**Return:** Branch name (or `none`) and the completed `Spike answer` form from `<forge>/templates/issue.md`.

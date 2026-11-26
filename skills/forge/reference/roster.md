@@ -1,60 +1,43 @@
 # Roster
 
-This file tells which model does which role. The orchestrator reads it before each delegation. With T3 Code, it gives
-the provider, the model and the option to `delegate_task` (`target.providerInstanceId`, `target.model`,
-`target.options`). Without T3 Code, refer to "Delegation" in `workflow.md`.
-
-The section "Roster changes" in the project settings changes this file for one project. A change that the owner gives
-with a command changes it for one run.
+Model and provider lookup for subagent delegation. Override order: this file < `.agents/forge.md` ("Roster changes") < one-run command overrides.
 
 ## Roles
 
-The models are in order. Each model has its default effort.
+Ordered by preference, with default effort.
 
 | Role | First | Second | Third |
 | --- | --- | --- | --- |
 | Orchestrator | Opus 5.5, medium | | |
 | Planner | Fable 5.2, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
-| Designer, test author | Opus 5.5, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
+| Designer, UX/UI designer, test author | Opus 5.5, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
 | Implementer | Grok 4.7, xhigh | GPT-6.2 Sol, high | DeepSeek V4.1 Flash, max |
 | Reviewer | Gemini 4 Neon, high | GPT-6.2 Astra, high | Opus 5.5, high |
 | Tester | Hy4 Flash Free, high | DeepSeek V4.1 Flash, max | Haiku 5.5, medium |
 | Explorer, researcher, other | DeepSeek V4.1 Flash, max | Haiku 5.5, medium | |
 
-The orchestrator is the thread itself. Its row tells which model to start the thread with.
+The Orchestrator row indicates which model to start the thread with.
 
 ## Providers
 
-The providers for each model are in order. Each cell is: `provider` / `model id` / the name of the effort option.
+Ordered by preference. Cell format: `provider` / `model id` / `effort option`.
 
 | Model | First | Second | Third | Fourth |
 | --- | --- | --- | --- | --- |
 | Opus 5.5 | `claudeAgent` / `claude-opus-5-5` / `effort` | `antigravity` / `claude-opus-5-5` / `thought_level` | `cursor` / `claude-opus-5-5` / `effort` | `pi` / `anthropic/claude-opus-5-5` / `thinking` |
 | Fable 5.2 | `claudeAgent` / `claude-fable-5-2` / `effort` | `cursor` / `claude-fable-5-2` / `effort` | `pi` / `anthropic/claude-fable-5-2` / `thinking` | |
 | Haiku 5.5 | `claudeAgent` / `claude-haiku-5-5` / `effort` | `cursor` / `claude-haiku-5-5` / `reasoning_effort` | `pi` / `anthropic/claude-haiku-5-5` / `thinking` | |
-| Gemini 4 Neon | `antigravity` / `gemini-4-neon` / `thought_level` | `cursor` / `gemini-4-neon` / `reasoning_effort` | |
-| Grok 4.7 | `cursor` / `grok-4.7` / `reasoning_effort` | | |
-| GPT-6.2 Astra | `codex` / `gpt-6.2-astra` / `reasoningEffort` | | |
-| GPT-6.2 Sol | `codex` / `gpt-6.2-sol` / `reasoningEffort` | | |
-| DeepSeek V4.1 Flash | `pi` / `opencode-go/deepseek-v4.1-flash` / `thinking` (only `low`, `high`, `max`) | | |
-| Hy4 Flash Free | `pi` / `opencode-go/hy4-flash-free` / `thinking` (only `off`, `high`) | | |
+| Gemini 4 Neon | `antigravity` / `gemini-4-neon` / `thought_level` | `cursor` / `gemini-4-neon` / `reasoning_effort` | | |
+| Grok 4.7 | `cursor` / `grok-4.7` / `reasoning_effort` | | | |
+| GPT-6.2 Astra | `codex` / `gpt-6.2-astra` / `reasoningEffort` | | | |
+| GPT-6.2 Sol | `codex` / `gpt-6.2-sol` / `reasoningEffort` | | | |
+| DeepSeek V4.1 Flash | `pi` / `opencode-go/deepseek-v4.1-flash` / `thinking` (`low`, `high`, `max` only) | | | |
+| Hy4 Flash Free | `pi` / `opencode-go/hy4-flash-free` / `thinking` (`off`, `high` only) | | | |
 
-Cursor has none of the GPT models in this table. A machine can have fewer providers than this table. The fallback
-rule covers this.
+Cursor does not provide the GPT models above. Machines with fewer providers rely on fallback.
 
-## Rules
+## Selection rules
 
-- **Fallback.** If a provider is not available, or the task fails because of the provider (limit, outage, refusal),
-  use the next provider of the same model. If the model has no provider left, use the next model of the role. Do not
-  change the model because the result is bad. Send the task back with the findings. If a role has no model left,
-  stop and ask the owner.
-- **Effort.** The effort in the table is the default. Use one step more for an issue that has the `invariant` flag,
-  that touches stored data or money, that is long or complex, or that failed one review round. Also use one step
-  more when a run stops before the work is done and names no stop condition. For example, GPT-6.2 Sol goes from
-  high to xhigh. Use one step less for a small mechanical issue. If a provider does not have the level, use the
-  nearest level below it.
-- **Independent review.** The reviewer must not be the model that wrote the code. If a fallback makes them the same,
-  stop and ask the owner.
-- **Independent test.** The tester must not be the model that wrote the code, if possible. If it is the same model,
-  use the next tester in the roster that is available, and comment this on the issue.
-- **Record.** Each stage comment on the issue names the model that did the stage.
+- **Fallback:** On unavailable provider or provider failure (rate limit, outage, refusal), try the next provider for the same model, then the next model for the role. Never switch models due to poor output—send findings back instead. If no model remains, stop and ask the owner.
+- **Effort:** Raise one step for: `invariant` issues (build and review), stored data or money, high complexity, retry after a failed review round, or a run that stopped prematurely without a stop condition (e.g., `high` → `xhigh`). Lower one step for small mechanical work. If a provider lacks the requested level, use the nearest supported level below it.
+- **Independence:** Reviewer and Test author must not use the same model as Implementer; if fallback causes a collision, stop and ask the owner. Tester should also differ from Implementer—if they collide, pick the next available Tester and note it on the issue.
