@@ -10,7 +10,7 @@ Ordered by preference, with default effort.
 | --- | --- | --- | --- |
 | Orchestrator | Opus 5.5, medium | | |
 | Planner | Fable 5.2, high | Gemini 4 Neon, high | GPT-6.2 Astra, high |
-| Designer, UX/UI designer, test author | Opus 5.5, high | GPT-6.2 Astra, high | Gemini 4 Neon, high |
+| Designer, UX/UI designer, test author | Opus 5.5, high | Gemini 4 Neon, high | GPT-6.2 Astra, high |
 | Implementer | GPT-6.2 Sol, high | Grok 4.7, high | DeepSeek V4.1 Flash, max |
 | Reviewer | Gemini 4 Neon, high | Opus 5.5, high | GPT-6.2 Astra, high |
 | Tester | Hy4 Flash Free, high | DeepSeek V4.1 Flash, high | Haiku 5.5, medium |
