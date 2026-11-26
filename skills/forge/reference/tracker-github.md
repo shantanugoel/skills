@@ -12,6 +12,7 @@ Issues and PRs live on GitHub via `gh`. An issue reference is its number (e.g., 
 | Edit an issue body | `gh issue edit <n> --body-file <file>` |
 | Comment on an issue | `gh issue comment <n> --body-file <file>` |
 | Add / remove label | `gh issue edit <n> --add-label <label>` / `--remove-label <label>` |
+| Re-parent an issue | Detach from old parent (e.g., Backlog) and attach to new parent via GitHub sub-issues (`gh api graphql` `removeSubIssue` + `addSubIssue`). |
 | Close an issue | Comment first, then `gh issue close <n>` (if already closed, only comment). |
 | Open a PR | `gh pr create --head <branch> --title "<title>" --body-file <file>` (include `Closes #<issue>`). |
 | Update a PR | Implementer pushes new commits to `<branch>`. |

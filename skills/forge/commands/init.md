@@ -1,6 +1,6 @@
 # forge init
 
-Inspect the repository, ask only unresolved questions, and write `.agents/forge.md`. Do not modify application code. Also read `<forge>/templates/forge.md`.
+Inspect the repository, ask only unresolved questions, and write `.agents/forge.md` and a minimal, project-specific `AGENTS.md` (or update existing project instructions). Do not modify application code. Also read `<forge>/templates/forge.md`.
 
 When invoked from `forge kickoff`, seed proposals from kickoff docs (`docs/vision.md`, `docs/architecture.md`, `docs/design-language.md`), reuse kickoff's process/tracker choices, and skip proposing a separate check-setup issue.
 
@@ -30,12 +30,14 @@ Summarize findings in a few lines, then ask unresolved items in order, **one que
 
 ## 3. Confirm
 
-Draft `.agents/forge.md` from `<forge>/templates/forge.md` showing every setting (including defaults). Apply edits until approved.
+Draft `.agents/forge.md` from `<forge>/templates/forge.md` showing every setting (including defaults) and the proposed `AGENTS.md` (or `CLAUDE.md`) content/update. Apply edits until approved.
 
 ## 4. Write
 
 1. Add `Evidence` directory to `.gitignore`.
-2. Add or replace this block in `CLAUDE.md` (if present and not merely importing `AGENTS.md`), else `AGENTS.md` (if neither exists, ask which to create):
+2. Write or update `CLAUDE.md` (if present and not merely importing `AGENTS.md`), else `AGENTS.md` (default to `AGENTS.md` if neither exists, unless the owner prefers `CLAUDE.md`):
+   - Keep it minimal and project-specific (seeded from kickoff docs and Step 1 findings; omit empty items and never duplicate `.agents/forge.md` settings): one-line purpose, links to `Docs`/`UI` doc, stack & key layout, build/check/run commands (or note that the setup issue adds them), and non-obvious project conventions/invariants. Preserve existing custom content when updating.
+   - Add or replace this block:
 
    ```markdown
    ## Agent workflow

@@ -11,7 +11,7 @@ Orchestrator-only reference. Never include this file in subagent briefs.
 | Owner gates | Stop conditions, `(owner)` checks before merge | Milestone plan, milestone demo & `(owner)` checks, stop conditions |
 | Report | Closing comment on each issue | Report comment on each milestone |
 
-- **Tracking (`full`):** Only the next milestone has slices; later milestones have only a goal and a demo. Spikes live under Backlog or as an early milestone slice. Only `kickoff` and `roadmap` edit the Roadmap body; if milestone state differs between Roadmap and a milestone issue's `State:` line, the milestone issue wins.
+- **Tracking (`full`):** Only the next milestone has slices; later milestones have only a goal and a demo. Spikes live under Backlog or as an early milestone slice. Only `roadmap` edits the Roadmap body; if milestone state differs between Roadmap and a milestone issue's `State:` line, the milestone issue wins.
 - **`needs-owner`:** Add when blocked on the owner; remove once the owner answers or accepts.
 - **Settings:** Defaults live in `<forge>/templates/forge.md`. If `UI` is `none`, skip `ux-designer`, the `ui` flag, and design-language checks.
 
@@ -47,13 +47,13 @@ Proposed by `planner` with a 1-line reason; editable by orchestrator or owner.
 
 ## New issues placement
 
-Search open issues first; comment on an existing issue if one matches.
+Search open issues first; comment on an existing issue if one matches. Whenever `Backlog` is set (always in `full`), every issue not placed under a milestone goes under `Backlog` as a sub-issue (`standalone` only when `Backlog` is `none`).
 
 | Discovery | Placement |
 | --- | --- |
 | Breaks an acceptance check or demo of the active milestone (`full`) | Slice under the active milestone |
-| Real defect in merged code not blocking current work | `bug` under Backlog (or standalone) |
-| Need for a later milestone | `enhancement` under Backlog naming the milestone |
+| Real defect in merged code not blocking current work | `bug` under Backlog (or standalone if `Backlog` is `none`) |
+| Later-milestone need, unscheduled request, or standalone spike | `enhancement` (or `spike`) under Backlog (naming the milestone if known; standalone only if `Backlog` is `none`) |
 | Unneeded cleanup or speculative idea | No issue; note in closing comment (`light`) or milestone report (`full`) if important |
 
 ## Checkouts, worktrees, and delegation

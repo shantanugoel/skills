@@ -38,6 +38,7 @@ Branch: <branch> | none
 | Edit an issue body | Replace body only; preserve `## Pull request` and `## Comments`. |
 | Comment on an issue | Append a new `### <date> <role> (<model>)` entry under `## Comments`. Never edit earlier comments. |
 | Add / remove label | Edit the `Labels:` line. |
+| Re-parent an issue | Edit the `Parent:` line to the new `<NNN>` (or `none`). |
 | Close an issue | Append closing comment and set `Status: closed`. |
 | Open a PR | Set `Branch: <branch>` and write PR text under `## Pull request`. |
 | Update a PR | Implementer commits (and pushes if remote exists) on `<branch>`; update `## Pull request` if text changed. |

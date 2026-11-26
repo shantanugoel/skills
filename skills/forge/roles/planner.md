@@ -70,7 +70,7 @@ Draft `docs/vision.md` from `<forge>/templates/vision.md` using the idea, resear
 
 Read vision, architecture, `UI` doc (if set), Roadmap, open milestones, open spikes, and last milestone report. Propose:
 - New spikes (`Spike` in `<forge>/templates/issue.md`) for unknowns from `designer` / `ux-designer`.
-- For `kickoff`: one setup issue building the thinnest runnable skeleton and `Check`.
+- For `kickoff`: one setup issue building the thinnest runnable skeleton and `Check`. Stop here (milestones and the Roadmap body wait for `forge roadmap` after spikes close).
 - For `light`: issues to create or close (`Change` form). Stop here.
 - For `full`: Roadmap body:
 
@@ -86,6 +86,6 @@ Read vision, architecture, `UI` doc (if set), Roadmap, open milestones, open spi
 - <date>: what changed and why. Append only; never edit earlier lines.
 ```
 
-Rules: place spikes before dependent milestones; give every milestone a visible demo; keep milestones few (next + ~2 after, deferring rest to Backlog); no slices until `forge plan`; valid states: `candidate`, `next`, `in progress`, `done`.
+Rules: place spikes before dependent milestones; give every milestone a visible demo; keep milestones few (next + ~2 after, deferring rest to Backlog); capture any agreed out-of-scope boundaries per new milestone (strictly *what*, no slices or *how* until `forge plan`); valid states: `candidate`, `next`, `in progress`, `done`.
 
 **Return:** Proposed spikes/issues and (`full`) Roadmap body text.

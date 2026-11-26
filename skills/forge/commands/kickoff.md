@@ -47,7 +47,7 @@ Unanswered items go to `Open questions`. If the owner stops before Step 7, save 
 
 1. **Options:** Brief `designer` (`Architecture options`) and—if UI—`ux-designer` (`Design language options`) in parallel. Owner picks or blends; resolve remaining stack/UI choices one question at a time.
 2. **Documents:** Brief `planner` (`Vision`), `designer` (`Architecture doc`), and—if UI—`ux-designer` (`Design language doc`) in parallel.
-3. **First work:** Brief `planner` (`Roadmap`) with drafted docs, combined unknowns, and process: 2–4 decision-blocking spikes, 1 setup+check issue, and (`full`) candidate Roadmap body only (no milestone issues yet).
+3. **First work:** Brief `planner` (`Roadmap`) with drafted docs, combined unknowns, and process: 2–4 decision-blocking spikes and 1 setup+check issue (milestones and the Roadmap body wait for `forge roadmap` after spikes close).
 
 ## 6. Challenge
 
@@ -73,9 +73,8 @@ If the owner declines `forge init`: commit written docs per `Approved documents`
 
 1. Read `<forge>/reference/tracker-<tracker>.md` if not yet loaded.
 2. Create spikes (`spike`) and setup issue (`enhancement`) under Backlog if it exists.
-3. `full` process: write Roadmap body into Roadmap issue (create it and record in `.agents/forge.md` if missing).
-4. Link each spike in `docs/vision.md` under `## Open questions`.
-5. Commit approved docs, init files (`.agents/forge.md`, `.gitignore`, project instructions), and `.agents/issues/` (if `local`) per `Approved documents` in `orchestration.md`.
+3. Link each spike in `docs/vision.md` under `## Open questions`.
+4. Commit approved docs, init files (`.agents/forge.md`, `.gitignore`, project instructions), and `.agents/issues/` (if `local`) per `Approved documents` in `orchestration.md`.
 
 ## 10. Report to the owner
 

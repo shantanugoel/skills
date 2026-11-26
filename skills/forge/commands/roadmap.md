@@ -14,7 +14,7 @@ If `docs/vision.md` is missing, recommend `forge kickoff` and ask the owner how 
 
 ## 2. Understand the change
 
-- **No arguments:** audit for drift—unapplied spike answers, milestone `Learned` items, answered open questions, completed milestones—and propose updates.
+- **No arguments:** audit for drift—unapplied spike answers, milestone `Learned` items, answered open questions, completed milestones, and stale `Check: none` / `Run` / `AGENTS.md` once setup code exists—and propose updates.
 - **With arguments:** restate the change in one sentence. Ask one clarifying question if ambiguous. For major direction shifts, interview on affected Step 4 topics from `<forge>/commands/kickoff.md`.
 - **`light` process:** updates target docs and issues directly. If the owner wants milestones and demos, propose switching `Process` to `full`, updating `.agents/forge.md`, and creating Roadmap/Backlog issues.
 
@@ -43,7 +43,7 @@ Show a table of **what changes, where, and why**, plus full text of new mileston
 1. **Tracker:**
    - Create new spikes (`spike`) and issues (`enhancement`) under Backlog if it exists.
    - Close removed milestones, spikes, or issues (comment reason first).
-   - `full` process: update Roadmap body (append to `## Changes`), create new milestone issues (`milestone` label, parent = Roadmap, body with `State: candidate` or `next`, goal, demo, and `"Plan: run forge plan"`). If the active milestone is affected, comment on it and list slices needing updates—do not edit slices here.
+   - `full` process: update Roadmap body (append to `## Changes`), create new milestone issues (`milestone` label, parent = Roadmap, body with `State: candidate` or `next`, `## Goal`, `## Demo`, `## Waits on`, optional `## Out of scope` for boundaries agreed here—no slices or *how*—and `"Plan: run forge plan"`). If the active milestone is affected, comment on it and list slices needing updates—do not edit slices here.
 2. **Docs and commit:**
    - Link new spikes in `docs/vision.md` under `## Open questions`.
    - If any docs, `.agents/forge.md`, or local `.agents/issues/` files changed, commit them per `Approved documents` in `orchestration.md`.

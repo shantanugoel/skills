@@ -12,7 +12,7 @@ If no command or an unknown command is given, show this table and stop.
 | Command | Purpose | File |
 | --- | --- | --- |
 | `kickoff <idea>` | Turn an idea into vision, architecture, design language (if UI), and first spikes/setup issue. Offers `git init` and `init`. | `commands/kickoff.md` |
-| `init` | Explore the repo, ask unresolved questions, and write `.agents/forge.md`. | `commands/init.md` |
+| `init` | Explore the repo, ask unresolved questions, and write `.agents/forge.md` and a minimal project `AGENTS.md`. | `commands/init.md` |
 | `roadmap <what changed>` | Create or update roadmap, milestones, spikes, and docs; apply spike answers or milestone reports. | `commands/roadmap.md` |
 | `file <words>` | Turn a rough bug report or request into a well-formed issue without fixing it. | `commands/file.md` |
 | `run <issue>` | Take one issue (or spike) from spec to merge (or closed answer). | `commands/run.md` |
