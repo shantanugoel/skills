@@ -51,7 +51,7 @@ Stop and report with evidence when work hits any of these:
 - Spec or design requires scope changes or contradicts owner intent.
 - Passing `Check` requires deleting or weakening an existing test or check.
 - Work needs a paid model, real money, an owner account, or real user data not permitted by `Models` or the milestone plan.
-- Changing `.agents/forge.md` or the `forge` skill (propose in the closing comment or milestone report instead).
+- Changing `.agents/forge.md` or the `forge` skill (propose in the closing comment or milestone report instead; only the orchestrator edits `.agents/forge.md` with owner approval).
 
 ## New issues
 

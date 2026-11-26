@@ -1,12 +1,12 @@
 # forge kickoff <idea>
 
-Act as orchestrator and thinking partner to turn an idea into `docs/vision.md`, `docs/architecture.md`, `docs/design-language.md` (if UI), and the first spikes/setup issue. Do not write code. Perform **no tracker actions** before Step 9.
+Act as orchestrator and thinking partner to turn an idea into `docs/vision.md`, `docs/architecture.md`, `docs/design-language.md` (if UI), and the first spikes/setup issue. Do not write code. Perform **no tracker actions** before Step 8 (after owner approval in Step 7).
 
 Also read `<forge>/templates/vision.md`, `<forge>/templates/architecture.md`, `<forge>/templates/design-language.md`, and `Spike` in `<forge>/templates/issue.md`.
 
 ## 1. Assess current state
 
-- Check git repo, commits, and `.agents/forge.md` (if `Roadmap` is set, recommend `forge roadmap`).
+- Check git repo, commits, and `.agents/forge.md` (if `docs/vision.md` exists and `Roadmap` is set, recommend `forge roadmap`).
 - If `docs/vision.md` exists, summarize goals and open questions; ask to continue from open questions (recommended) or restart.
 - If code exists, brief an `explorer` to summarize it; treat code as fact, not proposal.
 
@@ -47,7 +47,7 @@ Unanswered items go to `Open questions`. If the owner stops before Step 7, save 
 
 1. **Options:** Brief `designer` (`Architecture options`) and—if UI—`ux-designer` (`Design language options`) in parallel. Owner picks or blends; resolve remaining stack/UI choices one question at a time.
 2. **Documents:** Brief `planner` (`Vision`), `designer` (`Architecture doc`), and—if UI—`ux-designer` (`Design language doc`) in parallel.
-3. **First work:** Brief `planner` (`Roadmap`) with drafted docs, combined unknowns, and process: 2–4 decision-blocking spikes and 1 setup+check issue (milestones and the Roadmap body wait for `forge roadmap` after spikes close).
+3. **First work:** Brief `planner` (`Roadmap`) with drafted docs and combined unknowns: 2–4 decision-blocking spikes and 1 setup+check issue (milestones and the Roadmap body wait for `forge roadmap` after spikes close).
 
 ## 6. Challenge
 

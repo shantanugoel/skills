@@ -22,7 +22,7 @@ Issues and PRs live on GitHub via `gh`. An issue reference is its number (e.g., 
 | Merge a PR | `gh pr merge <n> --squash --delete-branch` |
 | Delete a branch (spikes) | `git branch -D <branch>` (if local) and `git push origin --delete <branch>` (if pushed). |
 
-- If `Repository` is set in `.agents/forge.md`, pass `--repo <owner/name>` to every `gh issue` and `gh pr` command.
+- If `Repository` in `.agents/forge.md` is not `checkout`, pass `--repo <owner/name>` to every `gh issue` and `gh pr` command.
 - Always pass multi-line Markdown via `--body-file`, never inline shell arguments.
 - If a label is missing, create it (`gh label create <label>`) or tell the owner.
 - Roadmap, milestones, and backlog are issues—not GitHub Milestones.

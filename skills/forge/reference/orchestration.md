@@ -11,7 +11,7 @@ Orchestrator-only reference. Never include this file in subagent briefs.
 | Owner gates | Stop conditions, `(owner)` checks before merge | Milestone plan, milestone demo & `(owner)` checks, stop conditions |
 | Report | Closing comment on each issue | Report comment on each milestone |
 
-- **Tracking (`full`):** Only the next milestone has slices; later milestones have only a goal and a demo. Spikes live under Backlog or as an early milestone slice. Only `roadmap` edits the Roadmap body; if milestone state differs between Roadmap and a milestone issue's `State:` line, the milestone issue wins.
+- **Tracking (`full`):** Only the next milestone has slices; later milestones have only high-level scope (goal, demo, optional out-of-scope boundaries). Spikes live under Backlog or as an early milestone slice. Only `roadmap` edits the Roadmap body; if milestone state differs between Roadmap and a milestone issue's `State:` line, the milestone issue wins.
 - **`needs-owner`:** Add when blocked on the owner; remove once the owner answers or accepts.
 - **Settings:** Defaults live in `<forge>/templates/forge.md`. If `UI` is `none`, skip `ux-designer`, the `ui` flag, and design-language checks.
 
@@ -92,7 +92,7 @@ Context: <issue/milestone ref (+ absolute file path for local tracker), PR/branc
 Do not write to the tracker; return what your mode asks under Return.
 ```
 
-## Approved documents (`kickoff`, `roadmap`, `plan`)
+## Approved documents (`kickoff`, `roadmap`, `plan`, `run` bootstrap)
 
 After owner approval of docs, settings, or local `.agents/issues/` changes:
 1. Write approved files in `<main checkout>` on the default branch.

@@ -33,6 +33,6 @@ Verify before starting (if any fails, inform owner and stop):
    - **In-scope spec/design fault:** loop back to Step 1 or 2 **once** (counts as a round; re-run affected downstream steps including `test-author` if interfaces/checks changed). Scope changes, intent conflicts, or repeat failures stop for owner.
 8. **Owner checks:** if checks include `(owner)` and `Process` is `light`, post evidence, add `needs-owner`, and wait for owner approval before merge. (In `full`, `(owner)` checks defer to the milestone demo.)
 9. **Merge** (Review = `approve` and Verify = `pass` or skipped):
-   1. Run `Check` yourself in a temporary detached worktree (unless `Check` is `none`), read the diff summary, and remove the worktree.
+   1. Run `Check` yourself in a temporary detached worktree of the PR branch (unless `Check` is `none`), read the diff summary, and remove the worktree.
    2. File any accepted `proposed new issues` from subagents per `New issues placement` in `orchestration.md`, merge per `tracker-<tracker>.md` with the closing comment (what was built, key decisions, follow-up links, and in `light` proposals/cleanup ideas), and ensure the issue is closed.
    3. **Bootstrap check:** if this issue added or changed `Check` or `Run` (especially when `.agents/forge.md` has `Check: none` or `Run: README.md`), offer to update `.agents/forge.md` and `AGENTS.md` with owner approval and commit per `Approved documents` in `orchestration.md`.

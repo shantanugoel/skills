@@ -89,4 +89,4 @@ Read vision, architecture, `UI` doc (if set), Roadmap, open milestones, open spi
 
 Rules: place spikes before dependent milestones; give every milestone a visible demo; keep milestones few (next + ~2 after, deferring rest to Backlog); capture any agreed out-of-scope boundaries per new milestone (strictly *what*, no slices or *how* until `forge plan`); valid states: `candidate`, `next`, `in progress`, `done`.
 
-**Return:** Proposed spikes/issues and (`full`) Roadmap body text.
+**Return:** Proposed spikes/issues and (for `roadmap` in `full`) Roadmap body text.

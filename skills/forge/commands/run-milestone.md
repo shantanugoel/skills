@@ -18,7 +18,7 @@ Also read `<forge>/commands/run.md`. Update `<milestone>` body to `State: in pro
 ## 2. Finish milestone (when all slices are closed)
 
 1. **Demo run:** brief `tester` (`Milestone demo`) to run the demo script on a clean default-branch worktree, saving evidence to `<main checkout>/<Evidence>/demo-<milestone>/`. Post the report on `<milestone>`. Any failure becomes a new slice under `<milestone>`—return to Step 1.
-2. **Document check:** brief an `explorer` to compare all `Docs` (and `UI` doc if set) against the codebase for inaccuracies, omissions, or unclear steps. If findings exist, create one fix slice under `<milestone>` and run `forge run` for it.
+2. **Document check:** brief an `explorer` to compare all `Docs` (plus the `UI` doc and `AGENTS.md` if present) against the codebase for inaccuracies, omissions, or unclear steps. If findings exist, create one fix slice under `<milestone>` and run `forge run` for it.
 3. **Report:** post on `<milestone>`:
 
    ```markdown
