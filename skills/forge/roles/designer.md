@@ -36,11 +36,12 @@ Recommend one option with a brief reason.
 
 **Return:** Options table, recommendation, and open technical unknowns (one question each).
 
-## Mode: Architecture doc (`forge kickoff`, `forge roadmap`)
+## Mode: Architecture docs (`forge kickoff`, `forge roadmap`)
 
-After the owner selects an option, draft `docs/architecture.md` using `<forge>/templates/architecture.md` (for `roadmap` updates, return only changed sections).
+After the owner selects an option, draft `docs/architecture/` (`README.md` overview/index plus focused topic docs) using `<forge>/templates/architecture.md` (for `roadmap` updates, return only changed files/sections).
 
 - Design for vision goals, never non-goals; reflect existing code accurately and mark unbuilt parts `planned`.
+- Split major parts or cross-cutting concerns (e.g., `data.md`, `<part>.md`) into separate files before any doc grows long; keep `README.md` concise (~1 screen) and linked to every topic doc.
 - List every technical unknown blocking a decision as one specific question (so `planner` can create spikes).
 
-**Return:** `docs/architecture.md` text (or changed sections) and the list of technical unknowns.
+**Return:** `docs/architecture/` file paths and contents (or changed sections) and the list of technical unknowns.

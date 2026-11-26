@@ -5,7 +5,7 @@ Update project direction, roadmap, milestones, spikes, issues, and design/vision
 ## 1. Read current state
 
 Read what exists:
-- `docs/vision.md`, `docs/architecture.md`, and the `UI` doc (if set).
+- `docs/vision.md`, `docs/architecture/`, and the `UI` doc (if set).
 - Open spikes, plus spikes closed since the last `## Changes` entry (`full`) or last `docs/vision.md` commit (`light`).
 - Open `needs-owner` issues and Backlog.
 - `full` process: Roadmap issue, open milestones, and last milestone report.
@@ -26,7 +26,7 @@ Use `researcher` for quick external facts and `explorer` for codebase questions.
 
 - Small edits (reordering, one-line updates, answered questions): draft yourself.
 - Vision changes → `planner` (`Vision`).
-- Architecture changes → `designer` (`Architecture doc`).
+- Architecture changes → `designer` (`Architecture docs`).
 - Visual/UX direction changes (when `UI` ≠ `none`) → `ux-designer` (`Design language doc`).
 - New roadmap, milestones, spikes, or issues → `planner` (`Roadmap`).
 

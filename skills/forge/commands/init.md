@@ -2,7 +2,7 @@
 
 Inspect the repository, ask only unresolved questions, and write `.agents/forge.md` and a minimal, project-specific `AGENTS.md` (or update existing project instructions). Do not modify application code. Also read `<forge>/templates/forge.md`.
 
-When invoked from `forge kickoff`, seed proposals from kickoff docs (`docs/vision.md`, `docs/architecture.md`, `docs/design-language.md`), reuse kickoff's process/tracker choices, and skip proposing a separate check-setup issue.
+When invoked from `forge kickoff`, seed proposals from kickoff docs (`docs/vision.md`, `docs/architecture/`, `docs/design-language.md`), reuse kickoff's process/tracker choices, and skip proposing a separate check-setup issue.
 
 ## 1. Explore (read-only; ask no questions yet)
 

@@ -1,6 +1,6 @@
 # forge kickoff <idea>
 
-Act as orchestrator and thinking partner to turn an idea into `docs/vision.md`, `docs/architecture.md`, `docs/design-language.md` (if UI), and the first spikes/setup issue. Do not write code. Perform **no tracker actions** before Step 8 (after owner approval in Step 7).
+Act as orchestrator and thinking partner to turn an idea into `docs/vision.md`, `docs/architecture/`, `docs/design-language.md` (if UI), and the first spikes/setup issue. Do not write code. Perform **no tracker actions** before Step 8 (after owner approval in Step 7).
 
 Also read `<forge>/templates/vision.md`, `<forge>/templates/architecture.md`, `<forge>/templates/design-language.md`, and `Spike` in `<forge>/templates/issue.md`.
 
@@ -46,7 +46,7 @@ Unanswered items go to `Open questions`. If the owner stops before Step 7, save 
 ## 5. Shape and draft
 
 1. **Options:** Brief `designer` (`Architecture options`) and—if UI—`ux-designer` (`Design language options`) in parallel. Owner picks or blends; resolve remaining stack/UI choices one question at a time.
-2. **Documents:** Brief `planner` (`Vision`), `designer` (`Architecture doc`), and—if UI—`ux-designer` (`Design language doc`) in parallel.
+2. **Documents:** Brief `planner` (`Vision`), `designer` (`Architecture docs`), and—if UI—`ux-designer` (`Design language doc`) in parallel.
 3. **First work:** Brief `planner` (`Roadmap`) with drafted docs and combined unknowns: 2–4 decision-blocking spikes and 1 setup+check issue (milestones and the Roadmap body wait for `forge roadmap` after spikes close).
 
 ## 6. Challenge
@@ -55,7 +55,7 @@ Brief `reviewer` (`Kickoff or roadmap`) with drafted docs and first work; apply 
 
 ## 7. Settle with the owner
 
-Present in ~1 screen: vision summary (goals/non-goals), chosen architecture and UI direction (if any), first-work table (`title`, `kind`, `question/goal`), unapplied reviewer findings with rationale, and process. Apply owner edits; once approved, write `docs/vision.md`, `docs/architecture.md`, and (if UI) `docs/design-language.md` without committing yet.
+Present in ~1 screen: vision summary (goals/non-goals), chosen architecture and UI direction (if any), first-work table (`title`, `kind`, `question/goal`), unapplied reviewer findings with rationale, and process. Apply owner edits; once approved, write `docs/vision.md`, `docs/architecture/`, and (if UI) `docs/design-language.md` without committing yet.
 
 ## 8. Set up repository and settings
 

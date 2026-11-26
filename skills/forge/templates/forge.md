@@ -17,7 +17,7 @@ Single source of truth for project settings. Edit directly, or re-run `forge ini
 | Roadmap | `none` | Roadmap issue reference (`full` process only) |
 | Backlog | `none` | Backlog issue reference (optional in `light`) |
 | Branch | `issue/<issue>-<short-name>` | Work branch naming pattern |
-| Docs | `README.md` | Documents to keep accurate (one line per doc, or comma-separated) |
+| Docs | `README.md` | Docs or folders to keep accurate (e.g., `docs/architecture/`; one per line or comma-separated) |
 | Dependencies | `Allowed. Give the reason in the pull request.` | Policy for adding new dependencies |
 | Models | `Tests make no paid model call.` | Policy for LLM/model calls in tests and live runs |
 | Released | `yes` | `no` deletes obsolete code freely; `yes` keeps compatibility unless the issue says otherwise |

@@ -31,7 +31,7 @@ forge does not start by itself. Start it with a command:
 
 | Command | What it does |
 | --- | --- |
-| `forge kickoff <idea>` | Turns an idea into `docs/vision.md`, `docs/architecture.md`, `docs/design-language.md` (if UI), and the first spikes. Does research, asks questions one at a time, and offers `git init` and `forge init`. |
+| `forge kickoff <idea>` | Turns an idea into `docs/vision.md`, `docs/architecture/`, `docs/design-language.md` (if UI), and the first spikes. Does research, asks questions one at a time, and offers `git init` and `forge init`. |
 | `forge init` | Explores the repo, asks unresolved questions, and writes `.agents/forge.md`. Run once per repository. |
 | `forge roadmap <what changed>` | Creates or changes the roadmap, milestones, spikes, and docs. Applies spike answers or milestone reports. With no arguments, audits what is out of date. |
 | `forge file <words>` | Turns a rough description of a bug or wish into a well-formed issue without fixing it. |
