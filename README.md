@@ -59,10 +59,10 @@ How you type the command depends on the agent: `/forge run 12` in Claude Code, `
 
 ### Models
 
-`skills/forge/reference/roster.md` maps each role to its models and providers in preference order. Projects override it
-under `Roster changes` in `.agents/forge.md`, or per run via command arguments. With T3 Code, the orchestrator uses
-`delegate_task` to run each subagent on its provider. Without it, forge uses the agent's native subagents or runs stages
-itself.
+`skills/forge/reference/roster.md` maps each role to its preferred models, effort levels, and provider order. Projects
+override it under `Roster changes` in `.agents/forge.md`, or per run via command arguments. Runner-specific delegation
+and provider mappings live in `runner-t3code.md` (T3 Code `delegate_task`) and `runner-rex.md` (Rex terminal panes
+running agent CLIs). Without either, forge falls back to the agent's native subagents or runs stages itself.
 
 ### Files
 
@@ -70,7 +70,7 @@ itself.
 skills/forge/
 ├── SKILL.md       commands and bootstrap
 ├── commands/      one procedure file per command
-├── reference/     rules (shared), orchestration (orchestrator-only), roster, trackers
+├── reference/     rules (shared), orchestration (orchestrator-only), roster, runners, trackers
 ├── roles/         planner, designer, ux-designer, test-author, implementer, reviewer, tester
 └── templates/     settings, issue/spike forms, vision, architecture, design-language
 ```

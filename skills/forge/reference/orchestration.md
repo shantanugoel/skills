@@ -62,16 +62,17 @@ The main checkout stays on the default branch for orchestrator use only. All bui
 
 | Role | Workspace |
 | --- | --- |
-| `test-author`, `implementer` | Own branch worktree (`isolation: "worktree"` in T3, else `git worktree add`). Detach via `git switch --detach` before exiting. |
+| `test-author`, `implementer` | Own branch worktree (per active runner, else `git worktree add --detach`). Detach via `git switch --detach` before exiting. |
 | `planner`, `designer`, `ux-designer`, `reviewer` | Read-only (no edit worktree). |
 | `tester`, orchestrator pre-merge check / small fix | Temp detached worktree (`git worktree add --detach <tmp> <ref>`), removed after use (`git worktree remove <tmp>`). |
 
 Save tester evidence under `<main checkout>/<Evidence>/<issue>/` (or `demo-<milestone>/`).
 
-**Delegation order** (use the first available):
-1. **T3 Code (`delegate_task`):** Map `target.providerInstanceId`, `target.model`, `target.options` from `<forge>/reference/roster.md`.
-2. **Native subagents:** Use roster model if available, else pick an available model and log it. Enforce independence (Reviewer and Test author ≠ Implementer; Tester ≠ Implementer if possible). If only one model exists, note it on the issue (in `full`, ask owner before first build).
-3. **No subagents:** Execute stages sequentially yourself reading only that role's inputs; note lack of independence on the issue (in `full`, ask owner before first build).
+**Delegation order** (use the first available, unless overridden by the owner):
+1. **T3 Code** (`delegate_task` tool available): follow `<forge>/reference/runner-t3code.md`.
+2. **Rex** (`$REX_SESSION` set, or owner requests Rex and `rex` is available): follow `<forge>/reference/runner-rex.md`.
+3. **Native subagents:** Use roster model if available, else pick an available model and log it. Enforce independence (Reviewer and Test author ≠ Implementer; Tester ≠ Implementer if possible). If only one model exists, note it on the issue (in `full`, ask owner before first build).
+4. **No subagents:** Execute stages sequentially yourself reading only that role's inputs; note lack of independence on the issue (in `full`, ask owner before first build).
 
 ## Subagent brief
 
